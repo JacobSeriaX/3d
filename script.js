@@ -2,8 +2,9 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   const modelViewer = document.querySelector('#modelViewer');
+  const featuresContainer = document.querySelector('#featuresContainer');
 
-  // Открытие и закрытие модального окна
+  // Открытие и закрытие модального окна выбора фасона
   const openModalButton = document.getElementById('openModal');
   const modal = document.getElementById('modal');
   const closeModalButton = document.getElementById('closeModal');
@@ -22,6 +23,14 @@ document.addEventListener('DOMContentLoaded', () => {
     if (event.target == modal) {
       modal.style.display = 'none';
     }
+    // Закрытие дополнительных модальных окон
+    const additionalModals = ['modalPockets', 'modalReflectors', 'modalCollar'];
+    additionalModals.forEach(modalId => {
+      const additionalModal = document.getElementById(modalId);
+      if (event.target == additionalModal) {
+        additionalModal.style.display = 'none';
+      }
+    });
   });
 
   // Переключение моделей при выборе в модальном окне
@@ -31,6 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
       modelViewer.src = modelSrc;
       modal.style.display = 'none';
       updateOptionsVisibility(modelSrc);
+      clearFeatures(); // Очистка добавленных элементов при смене модели
     });
   });
 
@@ -177,4 +187,76 @@ document.addEventListener('DOMContentLoaded', () => {
       console.warn('Модель или материалы не загружены.');
     }
   });
+
+  // Обработка дополнительных элементов (карманы, отражатели, воротники)
+  const featureButtons = document.querySelectorAll('.feature-button');
+  const featureModals = {
+    'pockets': document.getElementById('modalPockets'),
+    'reflectors': document.getElementById('modalReflectors'),
+    'collar': document.getElementById('modalCollar')
+  };
+
+  featureButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const feature = button.dataset.feature;
+      const modalFeature = featureModals[feature];
+      if (modalFeature) {
+        modalFeature.style.display = 'block';
+      }
+    });
+  });
+
+  // Закрытие модальных окон для дополнительных элементов
+  const closeFeatureButtons = document.querySelectorAll('.close[data-modal]');
+  closeFeatureButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const modalId = button.dataset.modal;
+      const modalToClose = document.getElementById(modalId);
+      if (modalToClose) {
+        modalToClose.style.display = 'none';
+      }
+    });
+  });
+
+  // Добавление выбранного элемента к модели
+  const featureItems = document.querySelectorAll('.feature-item');
+  featureItems.forEach(item => {
+    item.addEventListener('click', (e) => {
+      const featureModelSrc = e.target.dataset.featureModel;
+      addFeatureModel(featureModelSrc);
+      // Закрытие модального окна после выбора
+      const parentModal = e.target.closest('.modal');
+      if (parentModal) {
+        parentModal.style.display = 'none';
+      }
+    });
+  });
+
+  // Функция для добавления дополнительного элемента к модели
+  function addFeatureModel(modelSrc) {
+    const existingFeature = featuresContainer.querySelector(`model-viewer[src="${modelSrc}"]`);
+    if (existingFeature) {
+      alert('Этот элемент уже добавлен.');
+      return;
+    }
+
+    const newFeature = document.createElement('model-viewer');
+    newFeature.setAttribute('src', modelSrc);
+    newFeature.setAttribute('alt', 'Дополнительный элемент');
+    newFeature.setAttribute('camera-controls', '');
+    newFeature.setAttribute('ar', '');
+    newFeature.style.position = 'absolute';
+    newFeature.style.top = '0';
+    newFeature.style.left = '0';
+    newFeature.style.width = '100%';
+    newFeature.style.height = '100%';
+    newFeature.style.pointerEvents = 'none'; // Не позволяет взаимодействовать с элементом
+
+    featuresContainer.appendChild(newFeature);
+  }
+
+  // Функция для очистки добавленных элементов при смене основной модели
+  function clearFeatures() {
+    featuresContainer.innerHTML = '';
+  }
 });

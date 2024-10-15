@@ -436,25 +436,6 @@
       <!-- Добавьте дополнительные опции при наличии материалов -->
     </div>
 
-    <!-- Опции для Новых Моделей -->
-    <!-- Опции для Куртки -->
-    <!-- Уже добавлены выше -->
-
-    <!-- Опции для Поварского Кителя -->
-    <!-- Уже добавлены выше -->
-
-    <!-- Опции для Фартука -->
-    <!-- Уже добавлены выше -->
-
-    <!-- Опции для Футболки без Воротника -->
-    <!-- Уже добавлены выше -->
-
-    <!-- Опции для Халата -->
-    <!-- Уже добавлены выше -->
-
-    <!-- Опции для Шапки Повора -->
-    <!-- Уже добавлены выше -->
-
     <!-- Кнопки для сохранения, загрузки и экспорта -->
     <div class="option">
       <button id="saveProject">Сохранить Проект</button>
@@ -464,11 +445,24 @@
 
     <!-- Кнопка для открытия модального окна выбора фасона -->
     <button class="open-modal" id="openModal">Выбрать фасон</button>
+
+    <!-- Кнопки для добавления дополнительных элементов -->
+    <h2>Добавить элементы</h2>
+    <div class="additional-buttons">
+      <button class="feature-button" data-feature="pockets">Добавить карманы</button>
+      <button class="feature-button" data-feature="reflectors">Добавить отражатель</button>
+      <button class="feature-button" data-feature="collar">Добавить воротник</button>
+    </div>
   </div>
 
   <!-- Основная область для 3D модели -->
   <div class="main-view">
-    <model-viewer id="modelViewer" src="assets/бушлат.glb" alt="3D модель" camera-controls auto-rotate></model-viewer>
+    <model-viewer id="modelViewer" src="assets/бушлат.glb" alt="3D модель" camera-controls></model-viewer>
+
+    <!-- Контейнеры для дополнительных элементов -->
+    <div id="featuresContainer" class="features-container">
+      <!-- Динамически добавляемые элементы будут здесь -->
+    </div>
   </div>
 
   <!-- Модальное окно выбора модели -->
@@ -487,6 +481,45 @@
         <div class="model-item" data-model="assets/футболка без воротника.glb">Футболка без Воротника</div>
         <div class="model-item" data-model="assets/халат.glb">Халат</div>
         <div class="model-item" data-model="assets/шапка повара.glb">Шапка Повора</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Модальное окно для выбора карманов -->
+  <div id="modalPockets" class="modal">
+    <div class="modal-content">
+      <span class="close" data-modal="modalPockets">&times;</span>
+      <h2>Выбор карманов</h2>
+      <div class="feature-grid">
+        <div class="feature-item" data-feature-model="assets/карман1.glb">Карманы стиль 1</div>
+        <div class="feature-item" data-feature-model="assets/карман2.glb">Карманы стиль 2</div>
+        <!-- Добавьте другие стили карманов -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Модальное окно для выбора отражателей -->
+  <div id="modalReflectors" class="modal">
+    <div class="modal-content">
+      <span class="close" data-modal="modalReflectors">&times;</span>
+      <h2>Выбор отражателя</h2>
+      <div class="feature-grid">
+        <div class="feature-item" data-feature-model="assets/отражатель1.glb">Отражатель стиль 1</div>
+        <div class="feature-item" data-feature-model="assets/отражатель2.glb">Отражатель стиль 2</div>
+        <!-- Добавьте другие стили отражателей -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Модальное окно для выбора воротника -->
+  <div id="modalCollar" class="modal">
+    <div class="modal-content">
+      <span class="close" data-modal="modalCollar">&times;</span>
+      <h2>Выбор воротника</h2>
+      <div class="feature-grid">
+        <div class="feature-item" data-feature-model="assets/воротник1.glb">Воротник стиль 1</div>
+        <div class="feature-item" data-feature-model="assets/воротник2.glb">Воротник стиль 2</div>
+        <!-- Добавьте другие стили воротников -->
       </div>
     </div>
   </div>
