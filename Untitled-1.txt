@@ -1,0 +1,31 @@
+ани (Grey Cloth)</h3>
+      <input type="color" id="greyClothColor" value="#ffffff">
+    </div>
+    <div class="option" id="greyClothOption_1">
+      <h3>Цвет серой ткани 001 (Grey Cloth 001)</h3>
+      <input type="color" id="greyClothColor_1" value="#ffffff">
+    </div>
+    <div class="option" id="material_0Option">
+
+      !Doctype html 
+      ани (Grey Cloth)</h3>
+      <input type="color" id="greyClothColor" value="#ffffff">
+    </div>
+    <div class="option" id="greyClothOption_1">
+      <h3>Цвет серой ткани 001 (Grey Cloth 001)</h3>
+      <input type="color" id="greyClothColor_1" value="#ffffff">
+    </div>
+    <div class="option" id="material_0Option">< set color:
+
+      <div> class="option" id materila
+
+        <div> 
+          .modal-content {
+            background-color: #fff;
+            margin: 15% auto;
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+          } 
+        
+        collar : class = "striker second </div>

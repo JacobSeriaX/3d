@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>3D Конфигуратор Спецодежды</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Подключение model-viewer -->
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
+</head>
+<body>
+  <!-- Сайдбар с опциями настройки -->
+  <div class="sidebar">
+    <h2>Настройка Спецодежды</h2>
+    
+    <!-- Опции для Бушлата -->
+    <div class="options-group" id="optionsBushlat">
+      <h3>Бушлат</h3>
+      <div class="option">
+        <label>Цвет доски</label>
+        <input type="color" data-material="pea jacket_board" value="#ffffff">
+      </div>
+      <div class="option">
+        <label>Цвет воротника</label>
+        <input type="color" data-material="pea jacket_collar" value="#ffffff">
+      </div>
+      <div class="option">
+        <label>Цвет передней левой части</label>
+        <input type="color" data-material="pea jacket_front_left" value="#ffffff">
+      </div>
+      <div class="option">
+        <label>Цвет передней правой части</label>
+        <input type="color" data-material="pea jacket_front_right" value="#ffffff">
+      </div>
+      <!-- Объединённая опция для рукавов -->
+      <div class="option">
+        <label>Цвет рукавов</label>
+        <input type="color" data-material="pea jacket_hand_left,pea jacket_hand_right" value="#ffffff">
+      </div>
+      <div class="option">
+        <label>Цвет капюшона</label>
+        <input type="color" data-material="pea jacket_hood" value="#ffffff">
+      </div>
+      <div class="option">
+        <label>Цвет передней левой штанины</label>
+        <input type="color" data-material="pea jacket_leg_front_left" value="#ffffff">
+      </div>
+      <div class="option">
+        <label>Цвет передней правой штанины</label>
+        <input type="color" data-material="pea jacket_leg_front_right" value="#ffffff">
+      </div>
+      <div class="option">
+        <label>Цвет задней левой штанины</label>
+        <input type="color" data-material="pea jacket_leg_rear_left" value="#ffffff">
+      </div>
+      <div class="option">
+        <label>Цвет задней правой штанины</label>
+        <input type="color" data-material="pea jacket_leg_rear_right" value="#ffffff">
+      </div>
+      <div class="option">
+        <label>Цвет линии</label>
+        <input type="color" data-material="pea jacket_line" value="#ffffff">
+      </div>
+      <!-- Объединённая опция для какетки -->
+      <div class="option">
+        <label>Цвет какетки</label>
+        <input type="color" data-material="pea jacket_overlap_left,pea jacket_overlap_right" value="#ffffff">
+      </div>
+      <div class="option">
+        <label>Цвет задней части</label>
+        <input type="color" data-material="pea jacket_rear" value="#ffffff">
+      </div>
+      <div class="option">
+        <label>Цвет замка</label>
+        <input type="color" data-material="pea jacket_zip-zip" value="#ffffff">
+      </div>
+      <div class="option">
+        <label>Цвет замка молнии</label>
+        <input type="color" data-material="pea jacket_zipper" value="#ffffff">
+      </div>
+    </div>
+
+    <!-- Опции для Футболки -->
+    <div class="options-group" id="optionsTshirt" style="display: none;">
+      <h3>Футболка</h3>
+      <div class="option">
+        <label>Цвет воротника</label>
+        <input type="color" data-material="T-shirt_collar" value="#ffffff">
+      </div>
+      <div class="option">
+        <label>Цвет передней части</label>
+        <input type="color" data-material="T-shirt_front" value="#ffffff">
+      </div>
+      <div class="option">
+        <label>Цвет задней части</label>
+        <input type="color" data-material="T-shirt_rear" value="#ffffff">
+      </div>
+      <div class="option">
+        <label>Цвет пуговиц</label>
+        <input type="color" data-material="T-shirt_button" value="#ffffff">
+      </div>
+      <div class="option">
+        <label>Цвет внутренней части</label>
+        <input type="color" data-material="T-shirt_inside" value="#ffffff">
+      </div>
+      <div class="option">
+        <label>Цвет лацкана</label>
+        <input type="color" data-material="T-shirt_lapel" value="#ffffff">
+      </div>
+      <div class="option">
+        <label>Цвет левой части</label>
+        <input type="color" data-material="T-shirt_left" value="#ffffff">
+      </div>
+      <div class="option">
+        <label>Цвет правой части</label>
+        <input type="color" data-material="T-shirt_right" value="#ffffff">
+      </div>
+      <div class="option">
+        <label>Цвет молнии</label>
+        <input type="color" data-material="T-shirt_zipper" value="#ffffff">
+      </div>
+    </div>
+
+    <!-- Опции для Жилетки -->
+    <div class="options-group" id="optionsWaistcoat" style="display: none;">
+      <h3>Жилетка</h3>
+      <div class="option">
+        <label>Цвет воротника жилетки</label>
+        <input type="color" data-material="waistcoat_collar" value="#ffffff">
+      </div>
+      <div class="option">
+        <label>Цвет манжет</label>
+        <input type="color" data-material="waistcoat_cuff" value="#ffffff">
+      </div>
+      <!-- Объединённая опция для передней левой части -->
+      <div class="option">
+        <label>Цвет передней левой части</label>
+        <input type="color" data-material="waistcoat_front_left_1,waistcoat_front_left_2,waistcoat_front_left_3,waistcoat_front_left_4,waistcoat_front_left_5,waistcoat_front_left_6,waistcoat_front_left_7" value="#ffffff">
+      </div>
+      <!-- Объединённая опция для передней правой части -->
+      <div class="option">
+        <label>Цвет передней правой части</label>
+        <input type="color" data-material="waistcoat_front_right_1,waistcoat_front_right_2,waistcoat_front_right_3,waistcoat_front_right_4,waistcoat_front_right_5,waistcoat_front_right_6,waistcoat_front_right_7" value="#ffffff">
+      </div>
+      <!-- Объединённая опция для задней части -->
+      <div class="option">
+        <label>Цвет задней части</label>
+        <input type="color" data-material="waistcoat_rear_1,waistcoat_rear_2,waistcoat_rear_3,waistcoat_rear_4,waistcoat_rear_5,waistcoat_rear_6" value="#ffffff">
+      </div>
+      <div class="option">
+        <label>Цвет нити</label>
+        <input type="color" data-material="waistcoat_thread" value="#ffffff">
+      </div>
+      <div class="option">
+        <label>Цвет замка</label>
+        <input type="color" data-material="waistcoat_zip" value="#ffffff">
+      </div>
+      <div class="option">
+        <label>Цвет замка молнии</label>
+        <input type="color" data-material="waistcoat_ziper,waistcoat_ziper_1" value="#ffffff">
+      </div>
+      <!-- Добавленные дополнительные материалы -->
+      <div class="option">
+        <label>Цвет линии капюшона</label>
+        <input type="color" data-material="waistcoat_hood_line" value="#ffffff">
+      </div>
+      <div class="option">
+        <label>Цвет внутренней части</label>
+        <input type="color" data-material="waistcoat_inside" value="#ffffff">
+      </div>
+    </div>
+
+    <!-- Опции для Комбинезона -->
+    <div class="options-group" id="optionsCoverall" style="display: none;">
+      <h3>Комбинезон</h3>
+      <div class="option">
+        <label>Цвет передней левой штанины</label>
+        <input type="color" data-material="coverall_leg_front_left" value="#ffffff">
+      </div>
+      <div class="option">
+        <label>Цвет передней правой штанины</label>
+        <input type="color" data-material="coverall_leg_front_right" value="#ffffff">
+      </div>
+      <div class="option">
+        <label>Цвет задней левой штанины</label>
+        <input type="color" data-material="coverall_leg_rear_left" value="#ffffff">
+      </div>
+      <div class="option">
+        <label>Цвет задней правой штанины</label>
+        <input type="color" data-material="coverall_leg_rear_right" value="#ffffff">
+      </div>
+      <div class="option">
+        <label>Цвет пояса</label>
+        <input type="color" data-material="coverall_belt" value="#ffffff">
+      </div>
+      <div class="option">
+        <label>Цвет застежки</label>
+        <input type="color" data-material="coverall_fastex" value="#ffffff">
+      </div>
+      <div class="option">
+        <label>Цвет линии</label>
+        <input type="color" data-material="coverall_line" value="#ffffff">
+      </div>
+      <div class="option">
+        <label>Цвет петель</label>
+        <input type="color" data-material="coverall_loops" value="#ffffff">
+      </div>
+      <div class="option">
+        <label>Цвет ремней</label>
+        <input type="color" data-material="coverall_strap" value="#ffffff">
+      </div>
+      <div class="option">
+        <label>Цвет верхней передней части</label>
+        <input type="color" data-material="coverall_up_front" value="#ffffff">
+      </div>
+      <div class="option">
+        <label>Цвет задней части штанины</label>
+        <input type="color" data-material="coverall_leg_rear" value="#ffffff">
+      </div>
+      <div class="option">
+        <label>Цвет серой ткани</label>
+        <input type="color" data-material="greyCloth" value="#ffffff">
+      </div>
+      <div class="option">
+        <label>Цвет серой ткани 001</label>
+        <input type="color" data-material="greyCloth_1" value="#ffffff">
+      </div>
+      <div class="option">
+        <label>Цвет материала 0</label>
+        <input type="color" data-material="material_0" value="#ffffff">
+      </div>
+    </div>
+
+    <!-- Опции для Куртки -->
+    <div class="options-group" id="optionsKurtka" style="display: none;">
+      <h3>Куртка</h3>
+      <div class="option">
+        <label>Цвет доски</label>
+        <input type="color" data-material="Jaket_board" value="#ffffff">
+      </div>
+      <div class="option">
+        <label>Цвет воротника</label>
+        <input type="color" data-material="Jaket_collar" value="#ffffff">
+      </div>
+      <div class="option">
+        <label>Цвет левой манжеты</label>
+        <input type="color" data-material="jaket_cuffs_left" value="#ffffff">
+      </div>
+      <div class="option">
+        <label>Цвет правой манжеты</label>
+        <input type="color" data-material="Jaket_cuffs_right" value="#ffffff">
+      </div>
+      <div class="option">
+        <label>Цвет передней левой части</label>
+        <input type="color" data-material="jaket_front_left" value="#ffffff">
+      </div>
+      <div class="option">
+        <label>Цвет передней правой части</label>
+        <input type="color" data-material="Jaket_front_right" value="#ffffff">
+      </div>
+      <div class="option">
+        <label>Цвет левой рукава</label>
+        <input type="color" data-material="Jaket_hand_left" value="#ffffff">
+      </div>
+      <div class="option">
+        <label>Цвет правой рукава</label>
+        <input type="color" data-material="Jaket_hand_right" value="#ffffff">
+      </div>
+      <div class="option">
+        <label>Цвет левой части какетки</label>
+        <input type="color" data-material="jaket_overlap_left" value="#ffffff">
+      </div>
+      <div class="option">
+        <label>Цвет правой части какетки</label>
+        <input type="color" data-material="Jaket_overlap_right" value="#ffffff">
+      </div>
+      <div class="option">
+        <label>Цвет задней части какетки</label>
+        <input type="color" data-material="Jaket_overlap_rear" value="#ffffff">
+      </div>
+      <div class="option">
+        <label>Цвет нити</label>
+        <input type="color" data-material="jaket_thread" value="#ffffff">
+      </div>
+    </div>
+
+    <!-- Опции для Поварского Кителя -->
+    <div class="options-group" id="optionsChefCoat" style="display: none;">
+      <h3>Поварской Китель</h3>
+      <div class="option">
+        <label>Цвет воротника</label>
+        <input type="color" data-material="cook`s_jaket_collar" value="#ffffff">
+      </div>
+      <div class="option">
+        <label>Цвет передней левой части</label>
+        <input type="color" data-material="cook`s_jaket_front_left" value="#ffffff">
+      </div>
+      <div class="option">
+        <label>Цвет передней правой части</label>
+        <input type="color" data-material="cook`s_jaket_front_right" value="#ffffff">
+      </div>
+      <div class="option">
+        <label>Цвет левой рукава</label>
+        <input type="color" data-material="cook`s_jaket_hand_left" value="#ffffff">
+      </div>
+      <div class="option">
+        <label>Цвет правой рукава</label>
+        <input type="color" data-material="cook`s_jaket_hand_right" value="#ffffff">
+      </div>
+      <div class="option">
+        <label>Цвет линии</label>
+        <input type="color" data-material="cook`s_jaket_line" value="#ffffff">
+      </div>
+      <div class="option">
+        <label>Цвет задней части</label>
+        <input type="color" data-material="cook`s_jaket_rear" value="#ffffff">
+      </div>
+      <!-- Объединённая опция для рукавов -->
+      <div class="option">
+        <label>Цвет рукавов</label>
+        <input type="color" data-material="cooks_jaket_sleeve_left,cooks_jaket_sleeve_right" value="#ffffff">
+      </div>
+      <div class="option">
+        <label>Цвет нити</label>
+        <input type="color" data-material="cooks_jaket_thread" value="#ffffff">
+      </div>
+    </div>
+
+    <!-- Опции для Фартука -->
+    <div class="options-group" id="optionsApron" style="display: none;">
+      <h3>Фартук</h3>
+      <div class="option">
+        <label>Цвет пояса</label>
+        <input type="color" data-material="apron_belt" value="#ffffff">
+      </div>
+      <div class="option">
+        <label>Цвет передней части</label>
+        <input type="color" data-material="apron_front" value="#ffffff">
+      </div>
+      <div class="option">
+        <label>Цвет внутренней части</label>
+        <input type="color" data-material="apron_inside" value="#ffffff">
+      </div>
+      <div class="option">
+        <label>Цвет линии 1</label>
+        <input type="color" data-material="apron_line_1" value="#ffffff">
+      </div>
+      <div class="option">
+        <label>Цвет линии 2</label>
+        <input type="color" data-material="apron_line_2" value="#ffffff">
+      </div>
+    </div>
+
+    <!-- Опции для Футболки без Воротника -->
+    <div class="options-group" id="optionsTshirtNoCollar" style="display: none;">
+      <h3>Футболка без Воротника</h3>
+      <div class="option">
+        <label>Цвет воротника</label>
+        <input type="color" data-material="T-shirt_collar" value="#ffffff">
+      </div>
+      <div class="option">
+        <label>Цвет передней части</label>
+        <input type="color" data-material="T-shirt_front" value="#ffffff">
+      </div>
+      <div class="option">
+        <label>Цвет левой рукава</label>
+        <input type="color" data-material="T-shirt_hand_left" value="#ffffff">
+      </div>
+      <div class="option">
+        <label>Цвет правой рукава</label>
+        <input type="color" data-material="T-shirt_hand_right" value="#ffffff">
+      </div>
+      <div class="option">
+        <label>Цвет задней части</label>
+        <input type="color" data-material="T-shirt_rear" value="#ffffff">
+      </div>
+      <div class="option">
+        <label>Цвет нити</label>
+        <input type="color" data-material="T-shirt_thread" value="#ffffff">
+      </div>
+    </div>
+
+    <!-- Опции для Халата -->
+    <div class="options-group" id="optionsRobe" style="display: none;">
+      <h3>Халат</h3>
+      <div class="option">
+        <label>Цвет кнопок</label>
+        <input type="color" data-material="Bathrobe_button" value="#ffffff">
+      </div>
+      <div class="option">
+        <label>Цвет воротника</label>
+        <input type="color" data-material="Bathrobe_collar" value="#ffffff">
+      </div>
+      <div class="option">
+        <label>Цвет передней левой части</label>
+        <input type="color" data-material="Bathrobe_front_left" value="#ffffff">
+      </div>
+      <div class="option">
+        <label>Цвет передней правой части</label>
+        <input type="color" data-material="Bathrobe_front_right" value="#ffffff">
+      </div>
+      <div class="option">
+        <label>Цвет левой рукава</label>
+        <input type="color" data-material="Bathrobe_hand_left" value="#ffffff">
+      </div>
+      <div class="option">
+        <label>Цвет правой рукава</label>
+        <input type="color" data-material="Bathrobe_hand_right" value="#ffffff">
+      </div>
+      <div class="option">
+        <label>Цвет лацкана</label>
+        <input type="color" data-material="Bathrobe_lapel" value="#ffffff">
+      </div>
+      <div class="option">
+        <label>Цвет задней части</label>
+        <input type="color" data-material="Bathrobe_rear" value="#ffffff">
+      </div>
+      <div class="option">
+        <label>Цвет кнопок воротника</label>
+        <input type="color" data-material="Bathrobe_collar_button" value="#ffffff">
+      </div>
+    </div>
+
+    <!-- Опции для Шапки Повора -->
+    <div class="options-group" id="optionsChefHat" style="display: none;">
+      <h3>Шапка Повора</h3>
+      <!-- Пустые опции, ожидаются материалы -->
+      <div class="option">
+        <label>Цвет шапки</label>
+        <input type="color" data-material="chefHat_color" value="#ffffff">
+      </div>
+      <!-- Добавьте дополнительные опции при наличии материалов -->
+    </div>
+
+    <!-- Опции для Новых Моделей -->
+    <!-- Опции для Куртки -->
+    <!-- Уже добавлены выше -->
+
+    <!-- Опции для Поварского Кителя -->
+    <!-- Уже добавлены выше -->
+
+    <!-- Опции для Фартука -->
+    <!-- Уже добавлены выше -->
+
+    <!-- Опции для Футболки без Воротника -->
+    <!-- Уже добавлены выше -->
+
+    <!-- Опции для Халата -->
+    <!-- Уже добавлены выше -->
+
+    <!-- Опции для Шапки Повора -->
+    <!-- Уже добавлены выше -->
+
+    <!-- Кнопки для сохранения, загрузки и экспорта -->
+    <div class="option">
+      <button id="saveProject">Сохранить Проект</button>
+      <button id="loadProject">Загрузить Проект</button>
+      <button id="exportImage">Экспортировать Изображение</button>
+    </div>
+
+    <!-- Кнопка для открытия модального окна выбора фасона -->
+    <button class="open-modal" id="openModal">Выбрать фасон</button>
+  </div>
+
+  <!-- Основная область для 3D модели -->
+  <div class="main-view">
+    <model-viewer id="modelViewer" src="assets/бушлат.glb" alt="3D модель" camera-controls auto-rotate></model-viewer>
+  </div>
+
+  <!-- Модальное окно выбора модели -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="closeModal">&times;</span>
+      <h2>Выбор фасона</h2>
+      <div class="model-grid">
+        <div class="model-item" data-model="assets/бушлат.glb">Бушлат</div>
+        <div class="model-item" data-model="assets/футболка с воротом.glb">Футболка с Воротом</div>
+        <div class="model-item" data-model="assets/жилетка.glb">Жилетка</div>
+        <div class="model-item" data-model="assets/комбинезон.glb">Комбинезон</div>
+        <div class="model-item" data-model="assets/куртка.glb">Куртка</div>
+        <div class="model-item" data-model="assets/поварской китель.glb">Поварской Китель</div>
+        <div class="model-item" data-model="assets/фартук.glb">Фартук</div>
+        <div class="model-item" data-model="assets/футболка без воротника.glb">Футболка без Воротника</div>
+        <div class="model-item" data-model="assets/халат.glb">Халат</div>
+        <div class="model-item" data-model="assets/шапка повара.glb">Шапка Повора</div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
