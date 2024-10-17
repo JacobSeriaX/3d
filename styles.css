@@ -28,7 +28,7 @@ body {
 .options-group {
   margin-bottom: 30px;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
   gap: 20px;
 }
 
@@ -43,28 +43,55 @@ body {
 .option {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
-.option label {
-  display: block;
-  font-size: 14px;
+.option-square {
+  width: 100px;
+  height: 100px;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 5px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.option-icon {
+  width: 40px;
+  height: 40px;
   margin-bottom: 5px;
 }
 
-.option input[type="color"] {
-  width: 100%;
+.option-square input[type="color"] {
+  width: 40px;
   height: 40px;
   border: none;
   cursor: pointer;
-  border-radius: 5px;
   padding: 0;
+  background: none;
+}
+
+.option label {
+  margin-top: 5px;
+  font-size: 12px;
+  text-align: center;
 }
 
 /* Стилизация кнопок сохранения, загрузки и экспорта */
-.option button {
-  width: 48%;
+.buttons-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.buttons-group button {
+  width: 100%;
   padding: 10px;
-  margin-bottom: 10px;
   background-color: #28a745;
   color: #fff;
   border: none;
@@ -74,23 +101,23 @@ body {
   transition: background-color 0.3s;
 }
 
-.option button:hover {
+.buttons-group button:hover {
   background-color: #218838;
 }
 
-.option button#loadProject {
+.buttons-group button#loadProject {
   background-color: #ffc107;
 }
 
-.option button#loadProject:hover {
+.buttons-group button#loadProject:hover {
   background-color: #e0a800;
 }
 
-.option button#exportImage {
+.buttons-group button#exportImage {
   background-color: #17a2b8;
 }
 
-.option button#exportImage:hover {
+.buttons-group button#exportImage:hover {
   background-color: #138496;
 }
 
@@ -105,6 +132,7 @@ body {
   cursor: pointer;
   font-size: 16px;
   transition: background-color 0.3s;
+  margin-top: 20px;
 }
 
 .open-modal:hover {
@@ -210,7 +238,7 @@ model-viewer {
 
 .model-grid, .feature-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
   gap: 20px;
 }
 
@@ -235,7 +263,22 @@ model-viewer {
   }
 
   .model-grid, .feature-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  }
+
+  .option-square {
+    width: 80px;
+    height: 80px;
+  }
+
+  .option-icon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .option-square input[type="color"] {
+    width: 30px;
+    height: 30px;
   }
 }
 
