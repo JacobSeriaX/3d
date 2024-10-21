@@ -147,7 +147,7 @@ body {
   margin-top: 20px;
 }
 
-.feature-button {
+.additional-buttons button.feature-button {
   padding: 10px;
   background-color: #6c757d;
   color: #fff;
@@ -158,7 +158,7 @@ body {
   transition: background-color 0.3s;
 }
 
-.feature-button:hover {
+.additional-buttons button.feature-button:hover {
   background-color: #5a6268;
 }
 
@@ -253,6 +253,94 @@ model-viewer {
 
 .model-item:hover, .feature-item:hover {
   background-color: #ddd;
+}
+
+/* Стили для добавления логотипа */
+#logoCanvas {
+  border: 1px solid #ccc;
+  margin-top: 10px;
+}
+
+#logoPreviewContainer div {
+  margin-top: 10px;
+}
+
+#applyLogoButton {
+  margin-top: 10px;
+  padding: 8px 12px;
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#applyLogoButton:hover {
+  background-color: #0056b3;
+}
+
+/* Стили для оценки стоимости */
+#costBreakdown ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+#costBreakdown li {
+  margin-bottom: 5px;
+}
+
+/* Стили для темной темы */
+body.dark-theme {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+body.dark-theme .sidebar {
+  background-color: #1e1e1e;
+  color: #ffffff;
+}
+
+body.dark-theme .option-square {
+  background-color: #333333;
+  border-color: #555555;
+}
+
+body.dark-theme .buttons-group button,
+body.dark-theme .additional-buttons button {
+  background-color: #424242;
+  color: #ffffff;
+}
+
+body.dark-theme .buttons-group button:hover,
+body.dark-theme .additional-buttons button:hover {
+  background-color: #616161;
+}
+
+body.dark-theme .modal-content {
+  background-color: #2c2c2c;
+  color: #ffffff;
+}
+
+body.dark-theme .model-item,
+body.dark-theme .feature-item {
+  background-color: #424242;
+  color: #ffffff;
+}
+
+body.dark-theme #applyLogoButton {
+  background-color: #28a745;
+}
+
+body.dark-theme #applyLogoButton:hover {
+  background-color: #218838;
+}
+
+body.dark-theme .ar-button {
+  background-color: #ff9800;
+}
+
+body.dark-theme .ar-button:hover {
+  background-color: #fb8c00;
 }
 
 /* Адаптивные стили */
