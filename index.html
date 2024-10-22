@@ -241,30 +241,9 @@
       <div class="option">
         <div class="option-square">
           <img src="assets/icons/leg_front_left.png" alt="Передняя левая штанина" class="option-icon">
-          <input type="color" data-material="coverall_leg_front_left" value="#ffffff">
+          <input type="color" data-material="coverall_ leg_front_right,coverall_ leg_front_left,coverall_ leg_rear_right,coverall_ leg_rear_left" value="#ffffff">
         </div>
-        <label>Цвет передней левой штанины</label>
-      </div>
-      <div class="option">
-        <div class="option-square">
-          <img src="assets/icons/leg_front_right.png" alt="Передняя правая штанина" class="option-icon">
-          <input type="color" data-material="coverall_leg_front_right" value="#ffffff">
-        </div>
-        <label>Цвет передней правой штанины</label>
-      </div>
-      <div class="option">
-        <div class="option-square">
-          <img src="assets/icons/leg_rear_left.png" alt="Задняя левая штанина" class="option-icon">
-          <input type="color" data-material="coverall_leg_rear_left" value="#ffffff">
-        </div>
-        <label>Цвет задней левой штанины</label>
-      </div>
-      <div class="option">
-        <div class="option-square">
-          <img src="assets/icons/leg_rear_right.png" alt="Задняя правая штанина" class="option-icon">
-          <input type="color" data-material="coverall_leg_rear_right" value="#ffffff">
-        </div>
-        <label>Цвет задней правой штанины</label>
+        <label>Цвет штанины</label>
       </div>
       <div class="option">
         <div class="option-square">
@@ -310,29 +289,22 @@
       </div>
       <div class="option">
         <div class="option-square">
-          <img src="assets/icons/leg_rear.png" alt="Задняя часть штанины" class="option-icon">
-          <input type="color" data-material="coverall_leg_rear" value="#ffffff">
-        </div>
-        <label>Цвет задней части штанины</label>
-      </div>
-      <div class="option">
-        <div class="option-square">
           <img src="assets/icons/grey_cloth.png" alt="Серая ткань" class="option-icon">
-          <input type="color" data-material="greyCloth" value="#ffffff">
+          <input type="color" data-material="Grey Cloth" value="#ffffff">
         </div>
         <label>Цвет серой ткани</label>
       </div>
       <div class="option">
         <div class="option-square">
           <img src="assets/icons/grey_cloth_1.png" alt="Серая ткань 001" class="option-icon">
-          <input type="color" data-material="greyCloth_1" value="#ffffff">
+          <input type="color" data-material="Grey Cloth.001" value="#ffffff">
         </div>
         <label>Цвет серой ткани 001</label>
       </div>
       <div class="option">
         <div class="option-square">
           <img src="assets/icons/material_0.png" alt="Материал 0" class="option-icon">
-          <input type="color" data-material="material_0" value="#ffffff">
+          <input type="color" data-material="coverall_up_rear" value="#ffffff">
         </div>
         <label>Цвет материала 0</label>
       </div>
@@ -661,6 +633,7 @@
       <!-- Остались только: Добавить Логотип, Темная Тема, Рассчитать Стоимость -->
       <button id="addLogoButton" class="feature-button">Добавить Логотип</button>
       <button id="toggleThemeButton" class="feature-button">Темная Тема</button>
+      <button id="addPocketsButton" class="feature-button">Добавить карманы</button>
     </div>
   </div>
 
@@ -716,6 +689,19 @@
           <input type="range" id="logoY" min="0" max="300" value="150">
         </div>
         <button id="applyLogoButton">Применить Логотип</button>
+      </div>
+    </div>
+  </div>
+  <div id="modalPockets" class="modal">
+    <div class="modal-content">
+      <span class="close" data-modal="modalPockets">&times;</span>
+      <h2>Добавить Карманы</h2>
+      <div class="model-grid">
+        <!-- Пример добавления карманов, замените src и названия на ваши -->
+        <div class="model-item" data-feature-model="assets/pocket1.glb">Карманы Тип 1</div>
+        <div class="model-item" data-feature-model="assets/pocket2.glb">Карманы Тип 2</div>
+        <div class="model-item" data-feature-model="assets/pocket3.glb">Карманы Тип 3</div>
+        <!-- Добавьте дополнительные карманы по необходимости -->
       </div>
     </div>
   </div>
