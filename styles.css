@@ -16,7 +16,7 @@ body {
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* Разделяет содержимое на верх и низ */
+  justify-content: space-between;
 }
 
 .sidebar h2 {
@@ -67,19 +67,55 @@ body {
   margin-bottom: 5px;
 }
 
-.option-square input[type="color"] {
+/* Новые стили для color-picker */
+.color-picker {
   width: 40px;
   height: 40px;
   border: none;
   cursor: pointer;
   padding: 0;
-  background: none;
+  background-color: #ffffff;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  position: relative;
+}
+
+.color-picker:hover {
+  border-color: #999;
 }
 
 .option label {
   margin-top: 5px;
   font-size: 12px;
   text-align: center;
+}
+
+/* Стили для палитры цветов */
+.color-palette {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: repeat(5, 30px);
+  gap: 5px;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.color-swatch {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.color-swatch:hover {
+  border-color: #999;
 }
 
 /* Стилизация кнопок сохранения, загрузки и экспорта */
@@ -162,6 +198,23 @@ body {
   background-color: #5a6268;
 }
 
+/* Новые стили для кнопок */
+.additional-buttons button#toggleRotationButton {
+  background-color: #007BFF;
+}
+
+.additional-buttons button#toggleRotationButton:hover {
+  background-color: #0056b3;
+}
+
+.additional-buttons button#addOtherDetailsButton {
+  background-color: #17a2b8;
+}
+
+.additional-buttons button#addOtherDetailsButton:hover {
+  background-color: #138496;
+}
+
 /* Основная область для 3D модели */
 .main-view {
   flex-grow: 1;
@@ -181,6 +234,7 @@ model-viewer {
   border-radius: 8px;
 }
 
+/* Стили для добавленных элементов */
 .features-container {
   position: absolute;
   top: 0;
@@ -190,12 +244,27 @@ model-viewer {
   pointer-events: none; /* Позволяет взаимодействовать с моделью под слоями */
 }
 
-.features-container model-viewer {
+.features-container model-viewer,
+.features-container img {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  background: transparent;
-  border-radius: 8px;
   pointer-events: none; /* Не позволяет взаимодействовать с дополнительными моделями */
+}
+
+/* Стили для отображения стоимости */
+#totalCost {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 24px;
+  color: #fff;
+  background-color: rgba(0,0,0,0.5);
+  padding: 10px 15px;
+  border-radius: 5px;
+  z-index: 10;
 }
 
 /* Стилизация модальных окон */
@@ -236,13 +305,13 @@ model-viewer {
   color: #000;
 }
 
-.model-grid, .feature-grid {
+.model-grid, .feature-grid, .details-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
   gap: 20px;
 }
 
-.model-item, .feature-item {
+.model-item, .feature-item, .detail-item {
   padding: 20px;
   background-color: #eee;
   text-align: center;
@@ -251,8 +320,18 @@ model-viewer {
   transition: background-color 0.3s;
 }
 
-.model-item:hover, .feature-item:hover {
+.model-item:hover, .feature-item:hover, .detail-item:hover {
   background-color: #ddd;
+}
+
+.detail-item img {
+  width: 80px;
+  height: auto;
+}
+
+.detail-item p {
+  margin: 5px 0 0;
+  font-size: 14px;
 }
 
 /* Стили для добавления логотипа */
@@ -277,16 +356,6 @@ model-viewer {
 
 #applyLogoButton:hover {
   background-color: #0056b3;
-}
-
-/* Стили для оценки стоимости */
-#costBreakdown ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-#costBreakdown li {
-  margin-bottom: 5px;
 }
 
 /* Стили для темной темы */
@@ -322,7 +391,8 @@ body.dark-theme .modal-content {
 }
 
 body.dark-theme .model-item,
-body.dark-theme .feature-item {
+body.dark-theme .feature-item,
+body.dark-theme .detail-item {
   background-color: #424242;
   color: #ffffff;
 }
@@ -335,12 +405,36 @@ body.dark-theme #applyLogoButton:hover {
   background-color: #218838;
 }
 
-body.dark-theme .ar-button {
-  background-color: #ff9800;
+/* Стили для ползунка изменения размера */
+#sizeSliderContainer {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background-color: rgba(255,255,255,0.9);
+  padding: 10px;
+  border-radius: 8px;
+  z-index: 20;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
-body.dark-theme .ar-button:hover {
-  background-color: #fb8c00;
+#sizeSlider {
+  width: 150px;
+}
+
+/* Стили для перетаскиваемых и масштабируемых элементов */
+.resizer {
+  width: 15px;
+  height: 15px;
+  background: rgba(0,0,0,0.5);
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  cursor: se-resize;
+  z-index: 5;
+}
+
+img[style*="position: absolute"] {
+  pointer-events: auto; /* Позволяет взаимодействовать с элементом */
 }
 
 /* Адаптивные стили */
@@ -350,7 +444,7 @@ body.dark-theme .ar-button:hover {
     padding: 15px;
   }
 
-  .model-grid, .feature-grid {
+  .model-grid, .feature-grid, .details-grid {
     grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
   }
 
@@ -364,7 +458,7 @@ body.dark-theme .ar-button:hover {
     height: 30px;
   }
 
-  .option-square input[type="color"] {
+  .color-picker {
     width: 30px;
     height: 30px;
   }
@@ -383,7 +477,7 @@ body.dark-theme .ar-button:hover {
     width: 90%;
   }
 
-  .options-group, .feature-grid {
+  .options-group, .feature-grid, .details-grid {
     grid-template-columns: 1fr;
   }
 }

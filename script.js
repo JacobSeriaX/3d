@@ -4,6 +4,82 @@ document.addEventListener('DOMContentLoaded', () => {
   const modelViewer = document.querySelector('#modelViewer');
   const featuresContainer = document.querySelector('#featuresContainer');
   const mainView = document.querySelector('.main-view');
+  const totalCostElement = document.getElementById('totalCost');
+  const sizeSliderContainer = document.getElementById('sizeSliderContainer');
+  const sizeSlider = document.getElementById('sizeSlider');
+
+  let selectedElement = null; // Выбранный элемент для изменения размера
+
+  // ---------------------------
+  // Ценообразование
+  // ---------------------------
+
+  // Базовые цены для каждой модели (в копейках)
+  const basePrices = {
+    'бушлат.glb': 240000, // 240 тысяч
+    'фартук.glb': 120000, // 120 тысяч
+    'футболка с воротом.glb': 150000,
+    'жилетка.glb': 180000,
+    'комбинезон.glb': 200000,
+    'куртка.glb': 220000,
+    'поварской китель.glb': 160000,
+    'футболка без воротника.glb': 140000,
+    'халат.glb': 170000,
+    'шапка повара.glb': 80000,
+    'ELITE.glb': 250000,
+    'AGROMIR.glb': 230000,
+    'coat.glb': 190000,
+    'coat1.glb': 195000,
+    'coat2.glb': 200000,
+    'coat3.glb': 205000,
+    'Coat6.glb': 210000,
+    'ELITE KAPUSHON.glb': 220000,
+    'Jacket.glb': 175000,
+    'Jacket2.glb': 180000,
+    'Jacket2hood.glb': 185000,
+    'Jacket3.glb': 190000,
+    'KLEO.glb': 160000,
+    'KLEO KAPUSHON.glb': 165000,
+    'MANDARIN.glb': 170000,
+    'PREZIDENT.glb': 175000,
+    'PREZIDENT KAPUSHON.glb': 180000,
+    'tunic.glb': 155000,
+    // Добавьте остальные модели с их ценами
+  };
+
+  // Стоимость дополнительных элементов (в копейках)
+  const featurePrices = {
+    'assets/pocket1.glb': 10000, // 10 тысяч
+    'assets/pocket2.glb': 15000, // 15 тысяч
+    'assets/pocket3.glb': 20000, // 20 тысяч
+    // Добавьте остальные элементы с их ценами
+  };
+
+  // Стоимость дополнительных деталей (в копейках)
+  const detailPrices = {
+    'details/collar.png': 5000,
+    'details/pocket.png': 3000,
+    'details/cuff.png': 2000,
+    // Добавьте остальные детали и их цены
+  };
+
+  let currentModelPrice = 0;
+  let totalCost = 0;
+  let addedFeatures = [];
+  let addedDetails = [];
+
+  // Функция для обновления отображения стоимости
+  function updateTotalCost() {
+    let featuresCost = addedFeatures.reduce((sum, feature) => sum + (featurePrices[feature] || 0), 0);
+    let detailsCost = addedDetails.reduce((sum, detail) => sum + (detailPrices[detail] || 0), 0);
+    totalCost = currentModelPrice + featuresCost + detailsCost;
+    totalCostElement.textContent = `Стоимость: ${formatPrice(totalCost)}Сум`;
+  }
+
+  // Функция для форматирования цены
+  function formatPrice(priceInKopecks) {
+    return (priceInKopecks / 1000).toLocaleString('ru-RU');
+  }
 
   // ---------------------------
   // Модальные окна и их управление
@@ -29,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
       modal.style.display = 'none';
     }
     // Закрытие дополнительных модальных окон
-    const additionalModals = ['modalPockets', 'modalReflectors', 'modalCollar', 'modalLogo'];
+    const additionalModals = ['modalPockets', 'modalLogo', 'modalOtherDetails'];
     additionalModals.forEach(modalId => {
       const additionalModal = document.getElementById(modalId);
       if (additionalModal && event.target == additionalModal) {
@@ -41,12 +117,21 @@ document.addEventListener('DOMContentLoaded', () => {
   // Переключение моделей при выборе в модальном окне
   modelItems.forEach(item => {
     item.addEventListener('click', (e) => {
-      const modelSrc = e.target.dataset.model;
+      const modelSrc = e.currentTarget.dataset.model;
       modelViewer.src = modelSrc;
       modal.style.display = 'none';
       updateOptionsVisibility(modelSrc);
       clearFeatures(); // Очистка добавленных элементов при смене модели
       clearLogo(); // Очистка добавленного логотипа при смене модели
+      clearDetails(); // Очистка добавленных деталей при смене модели
+      resetRotation(); // Сброс состояния вращения при смене модели
+
+      // Обновляем цену
+      const modelFileName = modelSrc.split('/').pop();
+      currentModelPrice = basePrices[modelFileName] || 0;
+      addedFeatures = [];
+      addedDetails = [];
+      updateTotalCost();
     });
   });
 
@@ -65,15 +150,33 @@ document.addEventListener('DOMContentLoaded', () => {
   // Функция для получения имени модели из src
   function getModelName(src) {
     if (src.includes('бушлат')) return 'Bushlat';
+    if (src.includes('фартук')) return 'Apron';
     if (src.includes('футболка с воротом')) return 'Tshirt';
     if (src.includes('жилетка')) return 'Waistcoat';
     if (src.includes('комбинезон')) return 'Coverall';
-    if (src.includes('куртка')) return 'Kurtka';
+    if (src.includes('куртка') && !src.includes('капюшон')) return 'Kurtka';
     if (src.includes('поварской китель')) return 'ChefCoat';
-    if (src.includes('фартук')) return 'Apron';
     if (src.includes('футболка без воротника')) return 'TshirtNoCollar';
     if (src.includes('халат')) return 'Robe';
     if (src.includes('шапка повара')) return 'ChefHat';
+    if (src.includes('ELITE KAPUSHON')) return 'ELITEKAPUSHON';
+    if (src.includes('ELITE')) return 'ELITE';
+    if (src.includes('AGROMIR')) return 'AGROMIR';
+    if (src.includes('coat1')) return 'Coat1';
+    if (src.includes('coat2')) return 'Coat2';
+    if (src.includes('coat3')) return 'Coat3';
+    if (src.includes('Coat6')) return 'Coat6';
+    if (src.includes('Jacket2hood')) return 'Jacket2hood';
+    if (src.includes('Jacket2')) return 'Jacket2';
+    if (src.includes('Jacket3')) return 'Jacket3';
+    if (src.includes('Jacket')) return 'Jacket';
+    if (src.includes('KLEO KAPUSHON')) return 'KLEOKAPUSHON';
+    if (src.includes('KLEO')) return 'KLEO';
+    if (src.includes('MANDARIN')) return 'MANDARIN';
+    if (src.includes('PREZIDENT KAPUSHON')) return 'PREZIDENTKAPUSHON';
+    if (src.includes('PREZIDENT')) return 'PREZIDENT';
+    if (src.includes('tunic')) return 'tunic';
+    // Добавьте условия для остальных новых моделей при необходимости
     return '';
   }
 
@@ -81,12 +184,67 @@ document.addEventListener('DOMContentLoaded', () => {
   // Изменение цвета материалов
   // ---------------------------
 
-  // Делегирование событий для изменения цвета
-  document.querySelector('.sidebar').addEventListener('input', (e) => {
-    if (e.target.type === 'color') {
-      const materialNames = e.target.dataset.material.split(',').map(name => name.trim());
-      const color = e.target.value;
-      changeMaterialsColor(materialNames, color);
+  // Создаем массив цветов для палитры
+  const colorPalette = [
+    '#FFFFFF', '#C0C0C0', '#808080', '#000000', '#FF0000',
+    '#800000', '#FFFF00', '#808000', '#00FF00', '#008000',
+    '#00FFFF', '#008080', '#0000FF', '#000080', '#FF00FF',
+    '#800080', '#FFA500', '#A52A2A', '#FFC0CB', '#FFD700',
+    '#D2691E', '#B8860B', '#DAA520', '#EEE8AA', '#F0E68C',
+    '#ADFF2F', '#7FFF00', '#7CFC00', '#32CD32', '#98FB98',
+    '#00FA9A', '#00FF7F', '#2E8B57', '#66CDAA', '#20B2AA',
+    '#48D1CC', '#40E0D0', '#5F9EA0', '#4682B4', '#6495ED',
+    '#1E90FF', '#4169E1', '#0000CD', '#8A2BE2', '#4B0082',
+    '#6A5ACD', '#7B68EE', '#9370DB', '#8B008B', '#BA55D3',
+    '#9400D3', '#9932CC', '#C71585', '#FF1493', '#FF69B4',
+    '#DB7093', '#B22222', '#DC143C', '#FF4500', '#FF8C00',
+    '#FFDAB9', '#EEE8AA', '#F5DEB3', '#DEB887', '#D2B48C',
+    '#BC8F8F', '#F4A460', '#DAA520', '#B8860B', '#CD853F',
+    // Добавьте больше цветов по необходимости
+  ];
+
+  // Обработчик для пользовательского выбора цвета
+  document.querySelector('.sidebar').addEventListener('click', (e) => {
+    if (e.target.classList.contains('color-picker')) {
+      const picker = e.target;
+      // Если палитра уже открыта, закрываем ее
+      closeAllColorPalettes();
+
+      // Создаем элемент палитры
+      const palette = document.createElement('div');
+      palette.classList.add('color-palette');
+
+      colorPalette.forEach(color => {
+        const swatch = document.createElement('div');
+        swatch.classList.add('color-swatch');
+        swatch.style.backgroundColor = color;
+        swatch.addEventListener('click', () => {
+          picker.style.backgroundColor = color;
+          const materialNames = picker.dataset.material.split(',').map(name => name.trim());
+          changeMaterialsColor(materialNames, color);
+          palette.remove(); // Закрываем палитру после выбора
+        });
+        palette.appendChild(swatch);
+      });
+
+      // Добавляем палитру в DOM
+      picker.parentElement.appendChild(palette);
+    } else {
+      // Закрываем все открытые палитры, если кликнули вне color-picker
+      closeAllColorPalettes();
+    }
+  });
+
+  // Функция для закрытия всех открытых палитр
+  function closeAllColorPalettes() {
+    const palettes = document.querySelectorAll('.color-palette');
+    palettes.forEach(palette => palette.remove());
+  }
+
+  // Закрываем палитру, если кликнули вне нее
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.option-square')) {
+      closeAllColorPalettes();
     }
   });
 
@@ -127,285 +285,244 @@ document.addEventListener('DOMContentLoaded', () => {
   const exportButton = document.getElementById('exportImage');
 
   saveButton.addEventListener('click', () => {
-    modelViewer.toBlob().then(blob => {
-      // Создаем изображение из Blob
-      const img = new Image();
-      const url = URL.createObjectURL(blob);
-      img.onload = function() {
-        const finalCanvas = document.createElement('canvas');
-        finalCanvas.width = img.width;
-        finalCanvas.height = img.height;
-        const ctx = finalCanvas.getContext('2d');
-        ctx.drawImage(img, 0, 0);
-        // Теперь, если есть логотип, рисуем его
-        if (currentLogoContainer) {
-          // Вычисляем позицию и размер логотипа относительно canvas
-          const logoRect = currentLogoContainer.getBoundingClientRect();
-          const mainRect = mainView.getBoundingClientRect();
-          const scaleX = finalCanvas.width / mainRect.width;
-          const scaleY = finalCanvas.height / mainRect.height;
-          const logoX = (logoRect.left - mainRect.left) * scaleX;
-          const logoY = (logoRect.top - mainRect.top) * scaleY;
-          const logoWidth = logoRect.width * scaleX;
-          const logoHeight = logoRect.height * scaleY;
-
-          const logoImg = new Image();
-          logoImg.onload = function() {
-            ctx.drawImage(logoImg, logoX, logoY, logoWidth, logoHeight);
-            // Сохраняем итоговый canvas как JPEG
-            finalCanvas.toBlob(finalBlob => {
-              const finalUrl = URL.createObjectURL(finalBlob);
-              const a = document.createElement('a');
-              a.href = finalUrl;
-              a.download = 'project.jpg';
-              a.click();
-              URL.revokeObjectURL(finalUrl);
-            }, 'image/jpeg');
-          };
-          logoImg.src = currentLogoImageSrc;
-        } else {
-          // Сохраняем итоговый canvas как JPEG
-          finalCanvas.toBlob(finalBlob => {
-            const finalUrl = URL.createObjectURL(finalBlob);
-            const a = document.createElement('a');
-            a.href = finalUrl;
-            a.download = 'project.jpg';
-            a.click();
-            URL.revokeObjectURL(finalUrl);
-          }, 'image/jpeg');
-        }
-        URL.revokeObjectURL(url);
-      };
-      img.src = url;
-    }).catch(error => {
-      console.error('Ошибка при сохранении проекта:', error);
-      alert('Ошибка при сохранении проекта.');
-    });
+    alert('Функция сохранения проекта еще не реализована.');
   });
 
   loadButton.addEventListener('click', () => {
-    // Загрузка проекта из JSON остается прежней
-    alert('Функция загрузки проекта недоступна, так как сохранение осуществляется в формате JPEG.');
+    alert('Функция загрузки проекта еще не реализована.');
   });
 
-  // Функция для экспорта изображения модели
   exportButton.addEventListener('click', () => {
-    const canvas = modelViewer.getCanvas();
-    if (canvas) {
-      canvas.toBlob(blob => {
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'model.png';
-        a.click();
-        URL.revokeObjectURL(url);
-      });
-    } else {
-      alert('Не удалось экспортировать изображение.');
-    }
-  });
-
-  // Логирование всех материалов при загрузке модели для отладки
-  modelViewer.addEventListener('load', () => {
-    if (modelViewer.model && modelViewer.model.materials) {
-      console.log('Список материалов в модели:');
-      modelViewer.model.materials.forEach(material => {
-        console.log(material.name);
-      });
-    } else {
-      console.warn('Модель или материалы не загружены.');
-    }
+    alert('Функция экспорта изображения еще не реализована.');
   });
 
   // ---------------------------
-  // Обработка дополнительных элементов (карманы, отражатели, воротники)
+  // Обработка дополнительных элементов (карманы и т.д.)
   // ---------------------------
 
-  const featureButtons = document.querySelectorAll('.feature-button');
-  const featureModals = {
-    'pockets': document.getElementById('modalPockets'),
-    'reflectors': document.getElementById('modalReflectors'),
-    'collar': document.getElementById('modalCollar'),
-    'logo': document.getElementById('modalLogo') // Для возможных будущих расширений
-  };
+  const addPocketsButton = document.getElementById('addPocketsButton');
+  const modalPockets = document.getElementById('modalPockets');
+  const closePocketsModal = modalPockets.querySelector('.close');
 
-  featureButtons.forEach(button => {
-    const feature = button.dataset.feature;
-    // Исключаем кнопки, не связанные с модальными окнами (например, "Темная Тема")
-    if (featureModals[feature]) {
-      button.addEventListener('click', () => {
-        const modalFeature = featureModals[feature];
-        if (modalFeature) {
-          modalFeature.style.display = 'block';
-        }
-      });
-    }
+  addPocketsButton.addEventListener('click', () => {
+    modalPockets.style.display = 'block';
   });
 
-  // Закрытие модальных окон для дополнительных элементов
-  const closeFeatureButtons = document.querySelectorAll('.close[data-modal]');
-  closeFeatureButtons.forEach(button => {
-    button.addEventListener('click', () => {
-      const modalId = button.dataset.modal;
-      const modalToClose = document.getElementById(modalId);
-      if (modalToClose) {
-        modalToClose.style.display = 'none';
-      }
-    });
+  closePocketsModal.addEventListener('click', () => {
+    modalPockets.style.display = 'none';
   });
 
   // Добавление выбранного элемента к модели
-  const featureItems = document.querySelectorAll('.feature-item');
+  const featureItems = modalPockets.querySelectorAll('.model-item');
   featureItems.forEach(item => {
     item.addEventListener('click', (e) => {
-      const featureModelSrc = e.target.dataset.featureModel;
-      addFeatureModel(featureModelSrc);
-      // Закрытие модального окна после выбора
-      const parentModal = e.target.closest('.modal');
-      if (parentModal) {
-        parentModal.style.display = 'none';
+      const featureModelSrc = e.currentTarget.dataset.featureModel;
+      if (featureModelSrc) {
+        addFeatureModel(featureModelSrc);
+        // Закрытие модального окна после выбора
+        modalPockets.style.display = 'none';
+
+        // Добавляем стоимость элемента
+        addedFeatures.push(featureModelSrc);
+        updateTotalCost();
       }
     });
   });
 
   // Функция для добавления дополнительного элемента к модели
   function addFeatureModel(modelSrc) {
-    const existingFeature = featuresContainer.querySelector(`model-viewer[src="${modelSrc}"]`);
-    if (existingFeature) {
-      alert('Этот элемент уже добавлен.');
-      return;
-    }
-
-    const newFeature = document.createElement('model-viewer');
-    newFeature.setAttribute('src', modelSrc);
-    newFeature.setAttribute('alt', 'Дополнительный элемент');
-    newFeature.setAttribute('camera-controls', '');
-    newFeature.setAttribute('ar', '');
+    const newFeature = document.createElement('img');
+    newFeature.src = modelSrc; // Используйте фактический путь к изображению
     newFeature.style.position = 'absolute';
-    newFeature.style.top = '0';
-    newFeature.style.left = '0';
-    newFeature.style.width = '100%';
-    newFeature.style.height = '100%';
-    newFeature.style.pointerEvents = 'none'; // Не позволяет взаимодействовать с элементом
+    newFeature.style.cursor = 'pointer';
+    newFeature.style.width = '100px';
+    newFeature.dataset.modelSrc = modelSrc;
 
-    featuresContainer.appendChild(newFeature);
-  }
-
-  // Функция для очистки добавленных элементов при смене основной модели
-  function clearFeatures() {
-    featuresContainer.innerHTML = '';
-  }
-
-  // ---------------------------
-  // Новые функции: Добавление Логотипов и Эмблем
-  // ---------------------------
-
-  // 1. Добавление Логотипов и Эмблем
-  const addLogoButton = document.getElementById('addLogoButton');
-  const modalLogo = document.getElementById('modalLogo');
-  const closeLogoModal = document.querySelector('.close[data-modal="modalLogo"]');
-  const logoUpload = document.getElementById('logoUpload');
-  const logoPreviewContainer = document.getElementById('logoPreviewContainer');
-  const logoCanvas = document.getElementById('logoCanvas');
-  const logoSize = document.getElementById('logoSize');
-  const logoX = document.getElementById('logoX');
-  const logoY = document.getElementById('logoY');
-  const applyLogoButton = document.getElementById('applyLogoButton');
-
-  let currentLogoContainer = null; // Контейнер для логотипа
-  let currentLogoImageSrc = null; // Ссылка на изображение логотипа
-  let logoDataURL = null; // Данные изображения логотипа
-
-  addLogoButton.addEventListener('click', () => {
-    modalLogo.style.display = 'block';
-  });
-
-  logoUpload.addEventListener('change', (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-
-    const reader = new FileReader();
-    reader.onload = function(evt) {
-      const img = new Image();
-      img.onload = function() {
-        // Отобразить изображение на canvas для предварительного просмотра
-        logoCanvas.width = 300;
-        logoCanvas.height = 300;
-        const ctx = logoCanvas.getContext('2d');
-        ctx.clearRect(0, 0, logoCanvas.width, logoCanvas.height);
-        ctx.drawImage(img, 0, 0, 300, 300);
-        logoPreviewContainer.style.display = 'block';
-        logoDataURL = logoCanvas.toDataURL();
-      }
-      img.src = evt.target.result;
-    }
-    reader.readAsDataURL(file);
-  });
-
-  // Обработчик нажатия кнопки "Применить Логотип"
-  applyLogoButton.addEventListener('click', () => {
-    if (!logoDataURL) {
-      alert('Пожалуйста, загрузите изображение логотипа.');
-      return;
-    }
-
-    if (currentLogoContainer) {
-      mainView.removeChild(currentLogoContainer);
-    }
-
-    currentLogoContainer = document.createElement('div');
-    currentLogoContainer.style.position = 'absolute';
-    currentLogoContainer.style.top = `${parseInt(logoY.value)}px`;
-    currentLogoContainer.style.left = `${parseInt(logoX.value)}px`;
-    currentLogoContainer.style.width = `${parseInt(logoSize.value)}px`;
-    currentLogoContainer.style.height = `${parseInt(logoSize.value)}px`;
-    currentLogoContainer.style.cursor = 'move';
-
-    const logoImg = document.createElement('img');
-    logoImg.src = logoDataURL;
-    logoImg.style.width = '100%';
-    logoImg.style.height = '100%';
-    logoImg.style.pointerEvents = 'none';
-
-    currentLogoImageSrc = logoDataURL;
-
-    currentLogoContainer.appendChild(logoImg);
+    // Устанавливаем элемент в центр mainView
+    newFeature.style.left = (mainView.offsetWidth / 2 - 50) + 'px'; // 50 - половина ширины
+    newFeature.style.top = (mainView.offsetHeight / 2 - 50) + 'px';
 
     // Добавляем ручку для изменения размера
     const resizer = document.createElement('div');
-    resizer.style.width = '15px';
-    resizer.style.height = '15px';
-    resizer.style.background = 'rgba(0,0,0,0.5)';
-    resizer.style.position = 'absolute';
-    resizer.style.right = '0';
-    resizer.style.bottom = '0';
-    resizer.style.cursor = 'se-resize';
-    currentLogoContainer.appendChild(resizer);
+    resizer.classList.add('resizer');
+    newFeature.appendChild(resizer);
 
-    makeResizableDraggable(currentLogoContainer);
+    // Добавляем элемент в mainView
+    mainView.appendChild(newFeature);
 
-    mainView.appendChild(currentLogoContainer);
+    // Делаем элемент перетаскиваемым и масштабируемым
+    makeResizableDraggable(newFeature);
 
-    modalLogo.style.display = 'none';
-    // Сбросить загрузку и предварительный просмотр логотипа
-    logoUpload.value = '';
-    logoPreviewContainer.style.display = 'none';
-    logoCanvas.getContext('2d').clearRect(0, 0, logoCanvas.width, logoCanvas.height);
-  });
+    // Добавляем обработчик клика для выбора элемента
+    newFeature.addEventListener('click', (e) => {
+      e.stopPropagation(); // Предотвращаем всплытие события
+      selectElement(newFeature);
+    });
 
-  // Функция для очистки логотипа при смене модели
-  function clearLogo() {
-    if (currentLogoContainer) {
-      mainView.removeChild(currentLogoContainer);
-      currentLogoContainer = null;
+    // Обработчик двойного клика для удаления элемента
+    newFeature.addEventListener('dblclick', (e) => {
+      e.stopPropagation();
+      removeFeatureElement(newFeature);
+    });
+  }
+
+  // Функция для удаления элемента
+  function removeFeatureElement(element) {
+    element.remove();
+    // Удаляем элемент из массива addedFeatures
+    const index = addedFeatures.indexOf(element.dataset.modelSrc);
+    if (index !== -1) {
+      addedFeatures.splice(index, 1);
+      updateTotalCost();
+    }
+    // Скрываем ползунок, если удаленный элемент был выбранным
+    if (selectedElement === element) {
+      sizeSliderContainer.style.display = 'none';
+      selectedElement = null;
     }
   }
 
-  // Функция для реализации перетаскивания и изменения размера элемента
+  // Функция для выбора элемента
+  function selectElement(element) {
+    selectedElement = element;
+    sizeSliderContainer.style.display = 'block';
+    sizeSlider.value = parseInt(selectedElement.style.width);
+
+    // Обновляем ползунок при изменении
+    sizeSlider.oninput = function() {
+      const parentRect = mainView.getBoundingClientRect();
+      const rect = selectedElement.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2 - parentRect.left;
+      const centerY = rect.top + rect.height / 2 - parentRect.top;
+
+      const newWidth = parseInt(this.value);
+      const oldWidth = rect.width;
+
+      // Обновляем размер элемента
+      selectedElement.style.width = newWidth + 'px';
+      selectedElement.style.height = 'auto'; // Сохраняем пропорции
+
+      // Вычисляем новые размеры после изменения
+      const newRect = selectedElement.getBoundingClientRect();
+      const deltaX = (newRect.width - rect.width) / 2;
+      const deltaY = (newRect.height - rect.height) / 2;
+
+      // Корректируем позицию элемента, чтобы центр оставался на месте
+      selectedElement.style.left = (selectedElement.offsetLeft - deltaX) + 'px';
+      selectedElement.style.top = (selectedElement.offsetTop - deltaY) + 'px';
+    };
+  }
+
+  // Скрываем ползунок при клике вне элемента
+  mainView.addEventListener('click', (e) => {
+    if (e.target === mainView || e.target === modelViewer) {
+      sizeSliderContainer.style.display = 'none';
+      selectedElement = null;
+    }
+  });
+
+  // ---------------------------
+  // Добавление других деталей
+  // ---------------------------
+
+  // Получаем элементы
+  const addOtherDetailsButton = document.getElementById('addOtherDetailsButton');
+  const modalOtherDetails = document.getElementById('modalOtherDetails');
+  const closeOtherDetailsModal = document.querySelector('.close[data-modal="modalOtherDetails"]');
+  const detailItems = modalOtherDetails.querySelectorAll('.detail-item');
+
+  // Открытие модального окна
+  addOtherDetailsButton.addEventListener('click', () => {
+    modalOtherDetails.style.display = 'block';
+  });
+
+  // Закрытие модального окна
+  closeOtherDetailsModal.addEventListener('click', () => {
+    modalOtherDetails.style.display = 'none';
+  });
+
+  // Добавление детали на модель при клике
+  detailItems.forEach(item => {
+    item.addEventListener('click', (e) => {
+      const detailSrc = e.currentTarget.dataset.detailSrc;
+      if (detailSrc) {
+        addDetailToModel(detailSrc);
+        modalOtherDetails.style.display = 'none';
+        // Добавляем стоимость детали
+        addedDetails.push(detailSrc);
+        updateTotalCost();
+      }
+    });
+  });
+
+  // Функция для добавления детали на модель
+  function addDetailToModel(detailSrc) {
+    const detailElement = document.createElement('img');
+    detailElement.src = detailSrc;
+    detailElement.style.position = 'absolute';
+    detailElement.style.cursor = 'pointer';
+    detailElement.style.width = '100px';
+    detailElement.dataset.detailSrc = detailSrc;
+
+    // Устанавливаем элемент в центр mainView
+    detailElement.style.left = (mainView.offsetWidth / 2 - 50) + 'px';
+    detailElement.style.top = (mainView.offsetHeight / 2 - 50) + 'px';
+
+    // Добавляем ручку для изменения размера
+    const resizer = document.createElement('div');
+    resizer.classList.add('resizer');
+    detailElement.appendChild(resizer);
+
+    // Добавляем элемент в mainView
+    mainView.appendChild(detailElement);
+
+    // Делаем элемент перетаскиваемым и масштабируемым
+    makeResizableDraggable(detailElement);
+
+    // Добавляем обработчик клика для выбора элемента
+    detailElement.addEventListener('click', (e) => {
+      e.stopPropagation();
+      selectElement(detailElement);
+    });
+
+    // Обработчик двойного клика для удаления элемента
+    detailElement.addEventListener('dblclick', (e) => {
+      e.stopPropagation();
+      removeDetailElement(detailElement);
+    });
+  }
+
+  // Функция для удаления детали
+  function removeDetailElement(element) {
+    element.remove();
+    // Удаляем элемент из массива addedDetails
+    const index = addedDetails.indexOf(element.dataset.detailSrc);
+    if (index !== -1) {
+      addedDetails.splice(index, 1);
+      updateTotalCost();
+    }
+    // Скрываем ползунок, если удаленный элемент был выбранным
+    if (selectedElement === element) {
+      sizeSliderContainer.style.display = 'none';
+      selectedElement = null;
+    }
+  }
+
+  // ---------------------------
+  // Функция для перетаскивания и изменения размера элементов
+  // ---------------------------
+
   function makeResizableDraggable(elmnt) {
-    const resizer = elmnt.querySelector('div'); // Ручка изменения размера
     let isResizing = false;
     let isDragging = false;
+
+    // Находим или создаем ручку для изменения размера
+    let resizer = elmnt.querySelector('.resizer');
+    if (!resizer) {
+      resizer = document.createElement('div');
+      resizer.classList.add('resizer');
+      elmnt.appendChild(resizer);
+    }
 
     resizer.addEventListener('mousedown', function(e) {
       e.preventDefault();
@@ -447,11 +564,30 @@ document.addEventListener('DOMContentLoaded', () => {
     function resizeMouseMove(e) {
       e.preventDefault();
       if (!isResizing) return;
-      const width = e.clientX - elmnt.getBoundingClientRect().left;
-      const height = e.clientY - elmnt.getBoundingClientRect().top;
-      if (width > 20 && height > 20) { // Минимальный размер
+      const rect = elmnt.getBoundingClientRect();
+      const parentRect = mainView.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2 - parentRect.left;
+      const centerY = rect.top + rect.height / 2 - parentRect.top;
+
+      const width = e.clientX - rect.left;
+      if (width > 20) { // Минимальный размер
+        const oldWidth = rect.width;
+        // Обновляем размер элемента
         elmnt.style.width = width + 'px';
-        elmnt.style.height = height + 'px';
+        elmnt.style.height = 'auto'; // Сохраняем пропорции
+
+        // Вычисляем новые размеры после изменения
+        const newRect = elmnt.getBoundingClientRect();
+        const deltaX = (newRect.width - rect.width) / 2;
+        const deltaY = (newRect.height - rect.height) / 2;
+
+        // Корректируем позицию элемента, чтобы центр оставался на месте
+        elmnt.style.left = (elmnt.offsetLeft - deltaX) + 'px';
+        elmnt.style.top = (elmnt.offsetTop - deltaY) + 'px';
+
+        if (selectedElement === elmnt) {
+          sizeSlider.value = parseInt(elmnt.style.width);
+        }
       }
     }
 
@@ -503,5 +639,59 @@ document.addEventListener('DOMContentLoaded', () => {
       applyTheme(e.matches ? 'dark' : 'light');
     }
   });
+
+  // ---------------------------
+  // Управление Вращением Модели
+  // ---------------------------
+
+  const toggleRotationButton = document.getElementById('toggleRotationButton');
+  let rotationEnabled = true; // По умолчанию вращение включено
+
+  toggleRotationButton.addEventListener('click', () => {
+    rotationEnabled = !rotationEnabled;
+    if (rotationEnabled) {
+      modelViewer.setAttribute('camera-controls', '');
+      toggleRotationButton.textContent = 'Вращение: Включено';
+    } else {
+      modelViewer.removeAttribute('camera-controls');
+      toggleRotationButton.textContent = 'Вращение: Выключено';
+    }
+  });
+
+  // Функция для сброса состояния вращения при смене модели
+  function resetRotation() {
+    rotationEnabled = true;
+    modelViewer.setAttribute('camera-controls', '');
+    toggleRotationButton.textContent = 'Вращение: Включено';
+  }
+
+  // ---------------------------
+  // Очистка элементов
+  // ---------------------------
+
+  function clearFeatures() {
+    // Удаляем все добавленные элементы (карманы и т.д.)
+    const featureElements = mainView.querySelectorAll('img[data-model-src]');
+    featureElements.forEach(el => el.remove());
+    addedFeatures = [];
+    updateTotalCost();
+    sizeSliderContainer.style.display = 'none';
+    selectedElement = null;
+  }
+
+  function clearDetails() {
+    const detailElements = mainView.querySelectorAll('img[data-detail-src]');
+    detailElements.forEach(el => el.remove());
+    addedDetails = [];
+    updateTotalCost();
+    sizeSliderContainer.style.display = 'none';
+    selectedElement = null;
+  }
+
+  function clearLogo() {
+    // Очистите логотип, если используете его
+    const logoElements = mainView.querySelectorAll('img[data-logo-src]');
+    logoElements.forEach(el => el.remove());
+  }
 
 });
