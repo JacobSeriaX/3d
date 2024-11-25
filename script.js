@@ -162,6 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (src.includes('ELITE KAPUSHON')) return 'ELITEKAPUSHON';
     if (src.includes('ELITE')) return 'ELITE';
     if (src.includes('AGROMIR')) return 'AGROMIR';
+    if (src.includes('coat')) return 'CoatS';
     if (src.includes('coat1')) return 'Coat1';
     if (src.includes('coat2')) return 'Coat2';
     if (src.includes('coat3')) return 'Coat3';
