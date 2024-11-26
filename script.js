@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Ценообразование
   // ---------------------------
 
-  // Базовые цены для каждой модели (в копейках)
+  // Базовые цены для каждой модели (в сумах)
   const basePrices = {
     'бушлат.glb': 240000, // 240 тысяч
     'фартук.glb': 120000, // 120 тысяч
@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Добавьте остальные модели с их ценами
   };
 
-  // Стоимость дополнительных элементов (в копейках)
+  // Стоимость дополнительных элементов (в сумах)
   const featurePrices = {
     'assets/pocket1.glb': 10000, // 10 тысяч
     'assets/pocket2.glb': 15000, // 15 тысяч
@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Добавьте остальные элементы с их ценами
   };
 
-  // Стоимость дополнительных деталей (в копейках)
+  // Стоимость дополнительных деталей (в сумах)
   const detailPrices = {
     'details/collar.png': 5000,
     'details/pocket.png': 3000,
@@ -77,8 +77,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Функция для форматирования цены
-  function formatPrice(priceInKopecks) {
-    return (priceInKopecks / 1000).toLocaleString('ru-RU');
+  function formatPrice(price) {
+    return price.toLocaleString('ru-RU');
   }
 
   // ---------------------------
@@ -304,32 +304,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const addPocketsButton = document.getElementById('addPocketsButton');
   const modalPockets = document.getElementById('modalPockets');
-  const closePocketsModal = modalPockets.querySelector('.close');
+  const closePocketsModal = modalPockets ? modalPockets.querySelector('.close') : null;
 
-  addPocketsButton.addEventListener('click', () => {
-    modalPockets.style.display = 'block';
-  });
-
-  closePocketsModal.addEventListener('click', () => {
-    modalPockets.style.display = 'none';
-  });
-
-  // Добавление выбранного элемента к модели
-  const featureItems = modalPockets.querySelectorAll('.model-item');
-  featureItems.forEach(item => {
-    item.addEventListener('click', (e) => {
-      const featureModelSrc = e.currentTarget.dataset.featureModel;
-      if (featureModelSrc) {
-        addFeatureModel(featureModelSrc);
-        // Закрытие модального окна после выбора
-        modalPockets.style.display = 'none';
-
-        // Добавляем стоимость элемента
-        addedFeatures.push(featureModelSrc);
-        updateTotalCost();
-      }
+  if (addPocketsButton && modalPockets && closePocketsModal) {
+    addPocketsButton.addEventListener('click', () => {
+      modalPockets.style.display = 'block';
     });
-  });
+
+    closePocketsModal.addEventListener('click', () => {
+      modalPockets.style.display = 'none';
+    });
+
+    // Добавление выбранного элемента к модели
+    const featureItems = modalPockets.querySelectorAll('.model-item');
+    featureItems.forEach(item => {
+      item.addEventListener('click', (e) => {
+        const featureModelSrc = e.currentTarget.dataset.featureModel;
+        if (featureModelSrc) {
+          addFeatureModel(featureModelSrc);
+          // Закрытие модального окна после выбора
+          modalPockets.style.display = 'none';
+
+          // Добавляем стоимость элемента
+          addedFeatures.push(featureModelSrc);
+          updateTotalCost();
+        }
+      });
+    });
+  }
 
   // Функция для добавления дополнительного элемента к модели
   function addFeatureModel(modelSrc) {
@@ -431,31 +433,33 @@ document.addEventListener('DOMContentLoaded', () => {
   const addOtherDetailsButton = document.getElementById('addOtherDetailsButton');
   const modalOtherDetails = document.getElementById('modalOtherDetails');
   const closeOtherDetailsModal = document.querySelector('.close[data-modal="modalOtherDetails"]');
-  const detailItems = modalOtherDetails.querySelectorAll('.detail-item');
+  const detailItems = modalOtherDetails ? modalOtherDetails.querySelectorAll('.detail-item') : [];
 
-  // Открытие модального окна
-  addOtherDetailsButton.addEventListener('click', () => {
-    modalOtherDetails.style.display = 'block';
-  });
-
-  // Закрытие модального окна
-  closeOtherDetailsModal.addEventListener('click', () => {
-    modalOtherDetails.style.display = 'none';
-  });
-
-  // Добавление детали на модель при клике
-  detailItems.forEach(item => {
-    item.addEventListener('click', (e) => {
-      const detailSrc = e.currentTarget.dataset.detailSrc;
-      if (detailSrc) {
-        addDetailToModel(detailSrc);
-        modalOtherDetails.style.display = 'none';
-        // Добавляем стоимость детали
-        addedDetails.push(detailSrc);
-        updateTotalCost();
-      }
+  if (addOtherDetailsButton && modalOtherDetails && closeOtherDetailsModal) {
+    // Открытие модального окна
+    addOtherDetailsButton.addEventListener('click', () => {
+      modalOtherDetails.style.display = 'block';
     });
-  });
+
+    // Закрытие модального окна
+    closeOtherDetailsModal.addEventListener('click', () => {
+      modalOtherDetails.style.display = 'none';
+    });
+
+    // Добавление детали на модель при клике
+    detailItems.forEach(item => {
+      item.addEventListener('click', (e) => {
+        const detailSrc = e.currentTarget.dataset.detailSrc;
+        if (detailSrc) {
+          addDetailToModel(detailSrc);
+          modalOtherDetails.style.display = 'none';
+          // Добавляем стоимость детали
+          addedDetails.push(detailSrc);
+          updateTotalCost();
+        }
+      });
+    });
+  }
 
   // Функция для добавления детали на модель
   function addDetailToModel(detailSrc) {
