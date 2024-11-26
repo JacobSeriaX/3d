@@ -285,7 +285,7 @@ model-viewer {
   margin: 5% auto;
   padding: 30px;
   border-radius: 10px;
-  width: 60%;
+  width: 80%; /* Увеличиваем ширину для размещения моделей */
   box-shadow: 0 5px 15px rgba(0,0,0,0.3);
   position: relative;
   transition: all 0.3s ease-in-out;
@@ -307,12 +307,12 @@ model-viewer {
 
 .model-grid, .feature-grid, .details-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); /* Увеличиваем минимальную ширину */
   gap: 20px;
 }
 
 .model-item, .feature-item, .detail-item {
-  padding: 20px;
+  padding: 10px;
   background-color: #eee;
   text-align: center;
   cursor: pointer;
@@ -324,14 +324,16 @@ model-viewer {
   background-color: #ddd;
 }
 
-.detail-item img {
-  width: 80px;
-  height: auto;
+.model-item model-viewer {
+  width: 100%;
+  height: 150px;
+  border-radius: 5px;
 }
 
-.detail-item p {
-  margin: 5px 0 0;
+.model-item p {
+  margin-top: 10px;
   font-size: 14px;
+  color: #333;
 }
 
 /* Стили для добавления логотипа */
@@ -462,6 +464,10 @@ img[style*="position: absolute"] {
     width: 30px;
     height: 30px;
   }
+
+  .model-item model-viewer {
+    height: 120px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -479,5 +485,9 @@ img[style*="position: absolute"] {
 
   .options-group, .feature-grid, .details-grid {
     grid-template-columns: 1fr;
+  }
+
+  .model-item model-viewer {
+    height: 100px;
   }
 }

@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let featuresCost = addedFeatures.reduce((sum, feature) => sum + (featurePrices[feature] || 0), 0);
     let detailsCost = addedDetails.reduce((sum, detail) => sum + (detailPrices[detail] || 0), 0);
     totalCost = currentModelPrice + featuresCost + detailsCost;
-    totalCostElement.textContent = `Стоимость: ${formatPrice(totalCost)}Сум`;
+    totalCostElement.textContent = `Стоимость: ${formatPrice(totalCost)} Сум`;
   }
 
   // Функция для форматирования цены
@@ -152,17 +152,18 @@ document.addEventListener('DOMContentLoaded', () => {
     if (src.includes('бушлат')) return 'Bushlat';
     if (src.includes('фартук')) return 'Apron';
     if (src.includes('футболка с воротом')) return 'Tshirt';
-    if (src.includes('жилетка')) return 'Waistcoat';
+    if (src.includes('жилетка') && !src.includes('KAPUSHON')) return 'Waistcoat';
+    if (src.includes('жилетка') && src.includes('KAPUSHON')) return 'ELITEKAPUSHON';
     if (src.includes('комбинезон')) return 'Coverall';
     if (src.includes('куртка') && !src.includes('капюшон')) return 'Kurtka';
-    if (src.includes('поварской китель')) return 'ChefCoat';
+    if (src.includes('поварской китель') && !src.includes('coat')) return 'ChefCoat';
     if (src.includes('футболка без воротника')) return 'TshirtNoCollar';
     if (src.includes('халат')) return 'Robe';
     if (src.includes('шапка повара')) return 'ChefHat';
     if (src.includes('ELITE KAPUSHON')) return 'ELITEKAPUSHON';
     if (src.includes('ELITE')) return 'ELITE';
     if (src.includes('AGROMIR')) return 'AGROMIR';
-    if (src.includes('coat')) return 'CoatS';
+    if (src.includes('coat.glb')) return 'CoatS';
     if (src.includes('coat1')) return 'Coat1';
     if (src.includes('coat2')) return 'Coat2';
     if (src.includes('coat3')) return 'Coat3';
@@ -170,7 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (src.includes('Jacket2hood')) return 'Jacket2hood';
     if (src.includes('Jacket2')) return 'Jacket2';
     if (src.includes('Jacket3')) return 'Jacket3';
-    if (src.includes('Jacket')) return 'Jacket';
+    if (src.includes('Jacket.glb')) return 'Jacket';
     if (src.includes('KLEO KAPUSHON')) return 'KLEOKAPUSHON';
     if (src.includes('KLEO')) return 'KLEO';
     if (src.includes('MANDARIN')) return 'MANDARIN';

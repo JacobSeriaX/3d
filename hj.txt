@@ -1,4 +1,4 @@
-<!-- Опции для Бушлата -->
+    <!-- Опции для Бушлата -->
 <div class="options-group" id="optionsBushlat">
   <h3>Бушлат</h3>
   <div class="option">
@@ -519,7 +519,735 @@
     </div>
     <label>Цвет нижней части</label>
   </div>
+</div>
 
-  <!-- Повторите аналогичные изменения для всех опций шапки повара -->
-  <!-- ... -->
+<!-- Опции для ELITE -->
+<div class="options-group" id="optionsELITE" style="display: none;">
+  <h3>Безрукавка - ELITE</h3>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Coat_4_collar,Coat_4_collar_framing" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет воротника</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Coat_4_right,Coat_4_left" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет основы</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Coat_4_back" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет задней части</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Coat_4_upperpart_right,Coat_4_upperpart_left,Coat_4_upperpart_back" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет какетки</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Coat_4_upperpart_back" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет задней какетки</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Coat_4_front_framing_right,Coat_4_front_framing_left" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет канта</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Coat_4_sleeve_right_front,Coat_4_sleeve_left_front,Coat_4_sleeve_right_back,Coat_4_sleeve_left_back" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет рукава</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Zipper_pull,Zipper_slider,Zipper_left,Zipper_right" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет замка</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Zipper_tape_left,Zipper_tape_right" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет материала молнии</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Coat_4_Zipper_tape_right_framing,Coat_4_zipper_tape_left_framing," style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет материала молнии (2)</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Coat_4_front_framing_back" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет заднего канта</label>
+  </div>
+</div>
+
+<!-- Опции для AGROMIR -->
+<div class="options-group" id="optionsAGROMIR" style="display: none;">
+  <h3>AGROMIR</h3>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="peajacket_collar_right,peajacket_collar_left,peajacket_collar_back" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет воротника</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="peajacket_upperpart_right,peajacket_upperpart_left,peajacket_upperpart_back" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет какетки</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="peajacket_rightarm,peajacket_leftarm" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет рукава</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="peajacket_right,peajacket_left" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет основы</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="peajacket_back" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет задней части</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="peajacket_safer" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет клапана</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="peajacket_tape_up_right,peajacket_tape_up_left" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет отражателя</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="peajacket_tape_low_right,peajacket_tape_low_left" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет нижнего клапана</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="peajacket_framing_left,peajacket_framing_right,peajacket_lowerpart" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет канта и других линии</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="peajacket_sleeve_right,peajacket_sleeve_left" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет манжета</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Peajacket_zipper_slider,Peajacket_zipper_pull" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет замочек</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Peajacket_zipper_lefft,Peajacket_zipper_right" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет молнии</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="peajacket_tape_low_back" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет заднего пояса</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="peajacket_inner_left,peajacket_inner_right,peajacket_back_inner,peajacket_right_inner,peajacket_left_inner" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет внутренней части</label>
+  </div>
+</div>
+
+<!-- Опции для Поварского кителя Стандарт -->
+<div class="options-group" id="optionsCoatS" style="display: none;">
+  <h3>Поварской китель STANDART 1</h3>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Coat_collar" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет воротника</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Coat_right" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет основы правая часть</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Coat_left" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет основы левая часть</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Coat_back" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет задней части</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Coat_rightarm" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет рукава (правая)</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Coat_leftarm" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет рукава (левая)</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Coat_sleeve_right" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет нижнего рукава правая</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Coat_sleeve_left" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет Нижнего рукава левая</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Button" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет пуговиц</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Coat_lowpart" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет манжета</label>
+  </div>
+</div>
+
+<!-- Опции для Поварского кителя WELLFORT -->
+<div class="options-group" id="optionsCoat1" style="display: none;">
+  <h3>WELLFORT - Поварской китель</h3>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Coat_1_collar" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет воротника</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Coat_1_right" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет основы правая часть</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Coat_1_left,Coat_1_inner_left" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет основы левая часть</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Coat_1_back" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет задней части</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Coat_1_rightarm" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет рукава (правая)</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Coat_1_leftarm" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет рукава (левая)</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Coat_1_sleeve_left" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет нижнего рукава правая</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Coat_1_sleeve_right" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет Нижнего рукава левая</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Coat_1_collar_framing" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет канта (воротника)</label>
+  </div>
+</div>
+
+<!-- Опции для Поварского кителя STANDART 2 -->
+<div class="options-group" id="optionsCoat2" style="display: none;">
+  <h3>Поварской китель - STANDART 2</h3>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Coat_2_collar" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет воротника</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Coat_2_right" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет основы правая часть</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Coat_2_left" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет основы левая часть</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Coat_1_back" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет задней части</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Coat_1_rightarm" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет рукава (правая)</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Coat_1_leftarm" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет рукава (левая)</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Coat_1_sleeve_left" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет нижнего рукава правая</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Coat_1_sleeve_right" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет Нижнего рукава левая</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Coat_1_collar_framing" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет канта (воротника)</label>
+  </div>
+</div>
+
+<!-- Опции для Поварского кителя COAT6 -->
+<div class="options-group" id="optionsCoat6" style="display: none;">
+  <h3>Поварской китель - STANDART 6</h3>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Coat_6_collar" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет воротника</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Coat_6_right" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет основы правая часть</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Coat_6_left" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет основы левая часть</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Coat_6_back" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет задней части</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Coat_6_rightarm" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет рукава (правая)</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Coat_6_leftarm" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет рукава (левая)</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Coat_6_sleeve_left" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет нижнего рукава правая</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Coat_6_sleeve_right" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет Нижнего рукава левая</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Coat_6_lowpart_right,Coat_6_lowpart_left" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет нижней части</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Coat_round_button" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет пуговицы</label>
+  </div>
+</div>
+
+<!-- Опции для Спецодежды Green tree-->
+<div class="options-group" id="optionsJacket" style="display: none;">
+  <h3>Спецодежда - GREEN TREE</h3>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Jacket_collar_1" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет воротника</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Jacket_yoke_right,Jacket_yoke_left,Jacket_yoke_shoulders" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет какеток</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Jacket_yoke_shoulders" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет какетки плеча</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Jacket_yoke_back" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет задней какетки</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Jacket_sidebody_right,Jacket_sidebody_left" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет основы</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Jacket_back" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет задней части</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Jacket_rightarm_sleeve,Jacket_leftarm_sleeve" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет рукава</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Jacket_cuff_rightarm,Jacket_cuff_leftarm" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет руковишница</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Jacket_hem" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет нижней части</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Jacket_reflector_right,Jacket_reflector_left,Jacket_reflector_back" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет отражателя</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Jacket_reflector_back" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет отражателя задня часть</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Jacket_collar_trimming_2_right,Jacket_collar_trimming_2_left,Jacket_collar_trimming_1" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет канта</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Jacket_button_default" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет пуговицы</label>
+  </div>
+</div>
+
+<!-- Опции для Безрукавки -->
+<div class="options-group" id="optionsJacket2" style="display: none;">
+  <h3>Безрукавка</h3>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Jacket_2_collar.003" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет воротника</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Jacket_2_front_right.003,Jacket_2_front_left.003" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет основы</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Jacket_2_back.003" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет задней части</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Jacket_2_sleeve_right.003,Jacket_2_sleeve_left.005" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет рукава (манжета)</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Jacket_zipper_framing_left.003,Jacket_zipper_framing_rigth.003,Jacket_zipper_framing_back.001,Jacket_zipper_framing_left_collar.003,Jacket_zipper_framing_right_collar.003,Jacket_zipper_framing_left_collar_inner.002" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет канта</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Jacket_zipper_pull.003,Jacket_zipper_slider.003" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет замка</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Zipper_left.003,Zipper_right.003" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет молнии</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Jacket_2_zipper_tape_1_right.003,Jacket_2_zipper_tape_1_left.003" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет материала (молнии)</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Jacket_zipper_framing_back.001" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет задней нижнего части</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Jacket_reflector_back" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет отражателя задня часть</label>
+  </div>
+</div>
+
+<!-- Опции для Безрукавки GRAND LIGHT - HOOD -->
+<div class="options-group" id="optionsJacket2hood" style="display: none;">
+  <h3>Безрукавка GRAND LIGHT HOOD</h3>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Jacket_2_collar.002" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет воротника</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Jacket_2_front_right.002,Jacket_2_front_left.002" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет основы</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Jacket_2_back.002" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет задней части</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Jacket_2_sleeve_right.002,Jacket_2_sleeve_left.004" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет рукава (манжета)</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Jacket_zipper_framing_left.002,Jacket_zipper_framing_rigth.002,Jacket_zipper_framing_back,Jacket_zipper_framing_left_collar.002,Jacket_zipper_framing_right_collar.002,Jacket_zipper_framing_left_collar_inner.001" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет канта</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Jacket_zipper_pull.002,Jacket_zipper_slider.002" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет замка</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Zipper_left.002,Zipper_right.002" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет молнии</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Jacket_2_zipper_tape_1_right.002,Jacket_2_zipper_tape_1_left.002" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет материала (молнии)</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Jacket_zipper_framing_back" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет задней нижнего части</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Jacket_Polyester_Taffeta_left.001,Jacket_Polyester_Taffeta_right.001,Jacket_Polyester_Taffeta.001" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет Капущена</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Jacket_Jacket_Cotton_Heavy_Twill_right.001,Jacket_Jacket_Cotton_Heavy_Twill_left.001,Jacket_Jacket_Cotton_Heavy_Twill.001" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет внктреннего части Капущена</label>
+  </div>
+  <div class="option">
+    <div class="option-square">
+      <img src="icons/футболка воротник.png" alt="Молния" class="option-icon">
+      <div class="color-picker" data-material="Jacket_2_innerpart_back.002,Jacket_2_innerpart_front_left.002,Jacket_2_innerpart_front_right.002,Jacket_zipper_framing_right_collar_inner.001" style="background-color: #ffffff;"></div>
+    </div>
+    <label>Цвет внктреннего части</label>
+  </div>
 </div>
