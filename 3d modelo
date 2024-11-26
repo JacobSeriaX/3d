@@ -1,0 +1,120 @@
+<!-- Модальные окна -->
+  <!-- Модальное окно выбора модели -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="closeModal">&times;</span>
+      <h2>Выбор фасона</h2>
+      <div class="model-grid">
+        <!-- Существующие модели с 3D превью -->
+        <div class="model-item" data-model="assets/бушлат.glb">
+          <model-viewer src="assets/бушлат.glb" alt="Бушлат" camera-controls ar width="100%" height="150px"></model-viewer>
+          <p>Бушлат</p>
+        </div>
+        <div class="model-item" data-model="assets/футболка с воротом.glb">
+          <model-viewer src="assets/футболка с воротом.glb" alt="Футболка с Воротом" camera-controls ar width="100%" height="150px"></model-viewer>
+          <p>Футболка с Воротом</p>
+        </div>
+        <div class="model-item" data-model="assets/жилетка.glb">
+          <model-viewer src="assets/жилетка.glb" alt="Жилетка VERTU" camera-controls ar width="100%" height="150px"></model-viewer>
+          <p>Жилетка VERTU</p>
+        </div>
+        <div class="model-item" data-model="assets/футболка с воротом.glb">
+          <model-viewer src="assets/футболка с воротом.glb" alt="Футболка с Воротом" camera-controls ar width="100%" height="150px"></model-viewer>
+          <p>Футболка POLO</p>
+        </div>
+        <div class="model-item" data-model="assets/комбинезон.glb">
+          <model-viewer src="assets/комбинезон.glb" alt="Футболка с Воротом" camera-controls ar width="100%" height="150px"></model-viewer>
+          <p>Комбинезон</p>
+        </div>
+        <div class="model-item" data-model="assets/куртка.glb">
+          <model-viewer src="assets/куртка.glb" alt="Футболка с Воротом" camera-controls ar width="100%" height="150px"></model-viewer>
+          <p>Китель</p>
+        </div>
+        <div class="model-item" data-model="assets/поварской китель.glb">
+          <model-viewer src="assets/поварской китель.glb" alt="Футболка с Воротом" camera-controls ar width="100%" height="150px"></model-viewer>
+          <p>Поварской китель</p>
+        </div>
+        <div class="model-item" data-model="assets/фартук.glb">
+          <model-viewer src="assets/фартук.glb" alt="Футболка с Воротом" camera-controls ar width="100%" height="150px"></model-viewer>
+          <p>Фартук стандарт</p>
+        </div>
+        <div class="model-item" data-model="assets/футболка без воротника.glb">
+          <model-viewer src="assets/футболка без воротника.glb" alt="Футболка с Воротом" camera-controls ar width="100%" height="150px"></model-viewer>
+          <p>Футболка без воротника</p>
+        </div>
+        <div class="model-item" data-model="assets/халат.glb">
+          <model-viewer src="assets/халат.glb" alt="Футболка с Воротом" camera-controls ar width="100%" height="150px"></model-viewer>
+          <p>Халат</p>
+        </div>
+        <div class="model-item" data-model="assets/шапка повара.glb">
+          <model-viewer src="assets/шапка повара.glb" alt="Футболка с Воротом" camera-controls ar width="100%" height="150px"></model-viewer>
+          <p>Калпачок</p>
+        </div>
+        <div class="model-item" data-model="assets/ELITE.glb">
+          <model-viewer src="assets/ELITE.glb" alt="Футболка с Воротом" camera-controls ar width="100%" height="150px"></model-viewer>
+          <p>Безрукавка ELITE</p>
+        </div>
+        <div class="model-item" data-model="assets/AGROMIR.glb">
+          <model-viewer src="assets/AGROMIR.glb" alt="Футболка с Воротом" camera-controls ar width="100%" height="150px"></model-viewer>
+          <p>Бушлат AGROMIR</p>
+        </div>
+        <div class="model-item" data-model="assets/coat.glb">
+          <model-viewer src="assets/coat.glb" alt="Футболка с Воротом" camera-controls ar width="100%" height="150px"></model-viewer>
+          <p>Поварсокй китель</p>
+        </div>
+        <div class="model-item" data-model="assets/coat1.glb">
+          <model-viewer src="assets/coat1.glb" alt="Футболка с Воротом" camera-controls ar width="100%" height="150px"></model-viewer>
+          <p>Поварской китель</p>
+        </div>
+        <div class="model-item" data-model="assets/coat2.glb">
+          <model-viewer src="assets/coat2.glb" alt="Футболка с Воротом" camera-controls ar width="100%" height="150px"></model-viewer>
+          <p>Футболка с Воротом</p>
+        </div>
+        <div class="model-item" data-model="assets/coat3.glb">
+          <model-viewer src="assets/coat3.glb" alt="Футболка с Воротом" camera-controls ar width="100%" height="150px"></model-viewer>
+          <p>Футболка с Воротом</p>
+        </div>
+        <div class="model-item" data-model="assets/Coat6.glb">
+          <model-viewer src="assets/Coat6.glb" alt="Футболка с Воротом" camera-controls ar width="100%" height="150px"></model-viewer>
+          <p>Футболка с Воротом</p>
+        </div>
+        <div class="model-item" data-model="assets/Jacket.glb">
+          <model-viewer src="assets/Jacket.glb" alt="Футболка с Воротом" camera-controls ar width="100%" height="150px"></model-viewer>
+          <p>Футболка с Воротом</p>
+        </div>
+        <div class="model-item" data-model="assets/Jacket2.glb">
+          <model-viewer src="assets/Jacket2.glb" alt="Футболка с Воротом" camera-controls ar width="100%" height="150px"></model-viewer>
+          <p>Футболка с Воротом</p>
+        </div>
+        <div class="model-item" data-model="assets/Jacket2hood.glb">
+          <model-viewer src="assets/Jacket2hood.glb" alt="Футболка с Воротом" camera-controls ar width="100%" height="150px"></model-viewer>
+          <p>Футболка с Воротом</p>
+        </div>
+        <div class="model-item" data-model="assets/Jacket3.glb">
+          <model-viewer src="assets/Jacket3.glb" alt="Футболка с Воротом" camera-controls ar width="100%" height="150px"></model-viewer>
+          <p>Футболка с Воротом</p>
+        </div>
+        <div class="model-item" data-model="assets/KLEO.glb">
+          <model-viewer src="assets/KLEO.glb" alt="Футболка с Воротом" camera-controls ar width="100%" height="150px"></model-viewer>
+          <p>Футболка с Воротом</p>
+        </div>
+        <div class="model-item" data-model="assets/KLEO KAPUSHON.glb">
+          <model-viewer src="assets/KLEO KAPUSHON.glb" alt="Футболка с Воротом" camera-controls ar width="100%" height="150px"></model-viewer>
+          <p>Футболка с Воротом</p>
+        </div>
+        <div class="model-item" data-model="assets/MANDARIN.glb">
+          <model-viewer src="assets/MANDARIN.glb" alt="Футболка с Воротом" camera-controls ar width="100%" height="150px"></model-viewer>
+          <p>Футболка с Воротом</p>
+        </div>
+        <div class="model-item" data-model="assets/PREZIDENT.glb">
+          <model-viewer src="assets/PREZIDENT.glb" alt="Футболка с Воротом" camera-controls ar width="100%" height="150px"></model-viewer>
+          <p>Футболка с Воротом</p>
+        </div>
+        <div class="model-item" data-model="assets/PREZIDENT  KAPUSHON.glb">
+          <model-viewer src="assets/PREZIDENT  KAPUSHON.glb" alt="Футболка с Воротом" camera-controls ar width="100%" height="150px"></model-viewer>
+          <p>Футболка с Воротом</p>
+        </div>
+        <!-- ... -->
+      </div>
+    </div>
+  </div>

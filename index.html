@@ -13,7 +13,7 @@
   <div class="sidebar">
     <h2>Настройка Спецодежды</h2>
     
-        <!-- Опции для Бушлата -->
+       <!-- Опции для Бушлата -->
 <div class="options-group" id="optionsBushlat">
   <h3>Бушлат</h3>
   <div class="option">
@@ -1281,6 +1281,7 @@
     <h2>Добавить элементы</h2>
     <div class="additional-buttons">
       <button id="addLogoButton" class="feature-button">Добавить Логотип</button>
+      <button id="addTextButton" class="feature-button">Добавить Текст</button>
       <button id="toggleThemeButton" class="feature-button">Темная Тема</button>
       <button id="addPocketsButton" class="feature-button">Добавить карманы</button>
       <!-- Кнопка для управления вращением -->
@@ -1294,6 +1295,8 @@
   <div class="main-view">
     <!-- Контейнер для отображения стоимости -->
     <div id="totalCost">Стоимость: 0 Сум</div>
+    <!-- Контейнер для разбивки стоимости по элементам -->
+    <ul id="costBreakdown"></ul>
     <model-viewer id="modelViewer" src="assets/бушлат.glb" alt="3D модель" camera-controls></model-viewer>
 
     <!-- Контейнеры для дополнительных элементов -->
@@ -1428,8 +1431,39 @@
     </div>
   </div>
 
+
+  <!-- Модальное окно для добавления логотипа -->
+  <div id="modalLogo" class="modal">
+    <div class="modal-content">
+      <span class="close" data-modal="modalLogo">&times;</span>
+      <h2>Добавить Логотип или Изображение</h2>
+      <input type="file" id="logoInput" accept="image/*">
+      <button id="applyLogoButton">Применить</button>
+    </div>
+  </div>
+
+  <!-- Модальное окно для добавления текста -->
+  <div id="modalText" class="modal">
+    <div class="modal-content">
+      <span class="close" data-modal="modalText">&times;</span>
+      <h2>Добавить Текст</h2>
+      <textarea id="textInput" placeholder="Введите ваш текст"></textarea>
+      <label for="fontSelect">Выберите шрифт:</label>
+      <select id="fontSelect">
+        <option value="Arial">Arial</option>
+        <option value="Verdana">Verdana</option>
+        <option value="Times New Roman">Times New Roman</option>
+        <option value="Courier New">Courier New</option>
+        <!-- Добавьте дополнительные шрифты по необходимости -->
+      </select>
+      <label for="fontSizeInput">Размер шрифта:</label>
+      <input type="number" id="fontSizeInput" value="24" min="10" max="100">
+      <button id="applyTextButton">Применить</button>
+    </div>
+  </div>
+
   <!-- Модальные окна для карманов и других деталей остаются без изменений -->
-  
+
   <!-- Подключение скриптов -->
   <script src="script.js"></script>
 </body>

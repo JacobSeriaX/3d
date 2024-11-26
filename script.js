@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const totalCostElement = document.getElementById('totalCost');
   const sizeSliderContainer = document.getElementById('sizeSliderContainer');
   const sizeSlider = document.getElementById('sizeSlider');
+  const costBreakdownElement = document.getElementById('costBreakdown');
 
   let selectedElement = null; // Выбранный элемент для изменения размера
 
@@ -47,12 +48,57 @@ document.addEventListener('DOMContentLoaded', () => {
     // Добавьте остальные модели с их ценами
   };
 
+  // Отображаемые названия моделей
+  const modelDisplayNames = {
+    'бушлат.glb': 'Бушлат',
+    'фартук.glb': 'Фартук',
+    'футболка с воротом.glb': 'Футболка с воротом',
+    'жилетка.glb': 'Жилетка VERTU',
+    'комбинезон.glb': 'Комбинезон',
+    'куртка.glb': 'Куртка',
+    'поварской китель.glb': 'Поварской китель',
+    'футболка без воротника.glb': 'Футболка без воротника',
+    'халат.glb': 'Халат',
+    'шапка повара.glb': 'Шапка повара',
+    'ELITE.glb': 'ELITE',
+    'AGROMIR.glb': 'AGROMIR',
+    'coat.glb': 'Пальто',
+    'coat1.glb': 'Пальто 1',
+    'coat2.glb': 'Пальто 2',
+    'coat3.glb': 'Пальто 3',
+    'Coat6.glb': 'Пальто 6',
+    'ELITE KAPUSHON.glb': 'ELITE с капюшоном',
+    'Jacket.glb': 'Куртка',
+    'Jacket2.glb': 'Куртка 2',
+    'Jacket2hood.glb': 'Куртка 2 с капюшоном',
+    'Jacket3.glb': 'Куртка 3',
+    'KLEO.glb': 'KLEO',
+    'KLEO KAPUSHON.glb': 'KLEO с капюшоном',
+    'MANDARIN.glb': 'MANDARIN',
+    'PREZIDENT.glb': 'PREZIDENT',
+    'PREZIDENT KAPUSHON.glb': 'PREZIDENT с капюшоном',
+    'tunic.glb': 'Туника',
+    // Добавьте остальные модели с их названиями
+  };
+
   // Стоимость дополнительных элементов (в сумах)
   const featurePrices = {
     'assets/pocket1.glb': 10000, // 10 тысяч
     'assets/pocket2.glb': 15000, // 15 тысяч
     'assets/pocket3.glb': 20000, // 20 тысяч
     // Добавьте остальные элементы с их ценами
+    'customLogo': 5000, // Стоимость добавления логотипа
+    'customText': 3000, // Стоимость добавления текста
+  };
+
+  // Отображаемые названия дополнительных элементов
+  const featureDisplayNames = {
+    'assets/pocket1.glb': 'Карманы 1',
+    'assets/pocket2.glb': 'Карманы 2',
+    'assets/pocket3.glb': 'Карманы 3',
+    'customLogo': 'Добавлен логотип',
+    'customText': 'Добавлен текст',
+    // Добавьте остальные элементы с их названиями
   };
 
   // Стоимость дополнительных деталей (в сумах)
@@ -63,7 +109,17 @@ document.addEventListener('DOMContentLoaded', () => {
     // Добавьте остальные детали и их цены
   };
 
+  // Отображаемые названия дополнительных деталей
+  const detailDisplayNames = {
+    'details/collar.png': 'Воротник',
+    'details/pocket.png': 'Карманы',
+    'details/cuff.png': 'Манжеты',
+    // Добавьте остальные детали и их названия
+  };
+
   let currentModelPrice = 0;
+  let currentModelFileName = '';
+  let currentModelName = '';
   let totalCost = 0;
   let addedFeatures = [];
   let addedDetails = [];
@@ -74,6 +130,42 @@ document.addEventListener('DOMContentLoaded', () => {
     let detailsCost = addedDetails.reduce((sum, detail) => sum + (detailPrices[detail] || 0), 0);
     totalCost = currentModelPrice + featuresCost + detailsCost;
     totalCostElement.textContent = `Стоимость: ${formatPrice(totalCost)} Сум`;
+
+    // Создаем массив для разбивки стоимости
+    const costItems = [];
+
+    // Добавляем базовую модель
+    if (currentModelName) {
+      costItems.push({
+        name: currentModelName,
+        price: currentModelPrice
+      });
+    }
+
+    // Добавляем добавленные элементы
+    addedFeatures.forEach(feature => {
+      costItems.push({
+        name: featureDisplayNames[feature] || 'Дополнительный элемент',
+        price: featurePrices[feature] || 0
+      });
+    });
+
+    // Добавляем добавленные детали
+    addedDetails.forEach(detail => {
+      costItems.push({
+        name: detailDisplayNames[detail] || 'Дополнительная деталь',
+        price: detailPrices[detail] || 0
+      });
+    });
+
+    // Обновляем отображение разбивки стоимости
+    costBreakdownElement.innerHTML = ''; // Очищаем предыдущий список
+
+    costItems.forEach(item => {
+      const li = document.createElement('li');
+      li.textContent = `${item.name}: ${formatPrice(item.price)} сумов`;
+      costBreakdownElement.appendChild(li);
+    });
   }
 
   // Функция для форматирования цены
@@ -105,7 +197,7 @@ document.addEventListener('DOMContentLoaded', () => {
       modal.style.display = 'none';
     }
     // Закрытие дополнительных модальных окон
-    const additionalModals = ['modalPockets', 'modalLogo', 'modalOtherDetails'];
+    const additionalModals = ['modalPockets', 'modalLogo', 'modalOtherDetails', 'modalText'];
     additionalModals.forEach(modalId => {
       const additionalModal = document.getElementById(modalId);
       if (additionalModal && event.target == additionalModal) {
@@ -129,6 +221,8 @@ document.addEventListener('DOMContentLoaded', () => {
       // Обновляем цену
       const modelFileName = modelSrc.split('/').pop();
       currentModelPrice = basePrices[modelFileName] || 0;
+      currentModelFileName = modelFileName; // Сохраняем имя файла модели
+      currentModelName = modelDisplayNames[modelFileName] || 'Выбранная модель';
       addedFeatures = [];
       addedDetails = [];
       updateTotalCost();
@@ -515,6 +609,189 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ---------------------------
+  // Добавление логотипа или изображения
+  // ---------------------------
+
+  const addLogoButton = document.getElementById('addLogoButton');
+  const modalLogo = document.getElementById('modalLogo');
+  const closeLogoModal = modalLogo.querySelector('.close');
+  const logoInput = document.getElementById('logoInput');
+  const applyLogoButton = document.getElementById('applyLogoButton');
+
+  addLogoButton.addEventListener('click', () => {
+    modalLogo.style.display = 'block';
+  });
+
+  closeLogoModal.addEventListener('click', () => {
+    modalLogo.style.display = 'none';
+    logoInput.value = '';
+  });
+
+  applyLogoButton.addEventListener('click', () => {
+    const file = logoInput.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        addImageToModel(e.target.result);
+        modalLogo.style.display = 'none';
+        logoInput.value = '';
+        // Добавляем стоимость логотипа
+        addedFeatures.push('customLogo');
+        updateTotalCost();
+      };
+      reader.readAsDataURL(file);
+    } else {
+      alert('Пожалуйста, выберите файл изображения.');
+    }
+  });
+
+  // ---------------------------
+  // Добавление текста
+  // ---------------------------
+
+  const addTextButton = document.getElementById('addTextButton');
+  const modalText = document.getElementById('modalText');
+  const closeTextModal = modalText.querySelector('.close');
+  const textInput = document.getElementById('textInput');
+  const fontSelect = document.getElementById('fontSelect');
+  const fontSizeInput = document.getElementById('fontSizeInput');
+  const applyTextButton = document.getElementById('applyTextButton');
+
+  addTextButton.addEventListener('click', () => {
+    modalText.style.display = 'block';
+  });
+
+  closeTextModal.addEventListener('click', () => {
+    modalText.style.display = 'none';
+    textInput.value = '';
+  });
+
+  applyTextButton.addEventListener('click', () => {
+    const text = textInput.value.trim();
+    const font = fontSelect.value;
+    const fontSize = fontSizeInput.value;
+    if (text) {
+      addTextToModel(text, font, fontSize);
+      modalText.style.display = 'none';
+      textInput.value = '';
+      // Добавляем стоимость текста
+      addedFeatures.push('customText');
+      updateTotalCost();
+    } else {
+      alert('Пожалуйста, введите текст.');
+    }
+  });
+
+  // Функция для добавления изображения на модель
+  function addImageToModel(imageSrc) {
+    const imageElement = document.createElement('img');
+    imageElement.src = imageSrc;
+    imageElement.style.position = 'absolute';
+    imageElement.style.cursor = 'pointer';
+    imageElement.style.width = '100px';
+    imageElement.dataset.logoSrc = imageSrc;
+
+    // Устанавливаем элемент в центр mainView
+    imageElement.style.left = (mainView.offsetWidth / 2 - 50) + 'px';
+    imageElement.style.top = (mainView.offsetHeight / 2 - 50) + 'px';
+
+    // Добавляем ручку для изменения размера
+    const resizer = document.createElement('div');
+    resizer.classList.add('resizer');
+    imageElement.appendChild(resizer);
+
+    // Добавляем элемент в mainView
+    mainView.appendChild(imageElement);
+
+    // Делаем элемент перетаскиваемым и масштабируемым
+    makeResizableDraggable(imageElement);
+
+    // Добавляем обработчик клика для выбора элемента
+    imageElement.addEventListener('click', (e) => {
+      e.stopPropagation();
+      selectElement(imageElement);
+    });
+
+    // Обработчик двойного клика для удаления элемента
+    imageElement.addEventListener('dblclick', (e) => {
+      e.stopPropagation();
+      removeLogoElement(imageElement);
+    });
+  }
+
+  // Функция для удаления логотипа
+  function removeLogoElement(element) {
+    element.remove();
+    // Удаляем стоимость логотипа
+    const index = addedFeatures.indexOf('customLogo');
+    if (index !== -1) {
+      addedFeatures.splice(index, 1);
+      updateTotalCost();
+    }
+    // Скрываем ползунок, если удаленный элемент был выбранным
+    if (selectedElement === element) {
+      sizeSliderContainer.style.display = 'none';
+      selectedElement = null;
+    }
+  }
+
+  // Функция для добавления текста на модель
+  function addTextToModel(text, font, fontSize) {
+    const textElement = document.createElement('div');
+    textElement.textContent = text;
+    textElement.style.position = 'absolute';
+    textElement.style.cursor = 'move';
+    textElement.style.fontFamily = font;
+    textElement.style.fontSize = fontSize + 'px';
+    textElement.style.color = '#000';
+    textElement.style.backgroundColor = 'transparent';
+    textElement.classList.add('draggable-text');
+
+    // Устанавливаем элемент в центр mainView
+    textElement.style.left = (mainView.offsetWidth / 2 - 50) + 'px';
+    textElement.style.top = (mainView.offsetHeight / 2 - 20) + 'px';
+
+    // Добавляем ручку для изменения размера
+    const resizer = document.createElement('div');
+    resizer.classList.add('resizer');
+    textElement.appendChild(resizer);
+
+    // Добавляем элемент в mainView
+    mainView.appendChild(textElement);
+
+    // Делаем элемент перетаскиваемым и масштабируемым
+    makeResizableDraggable(textElement);
+
+    // Добавляем обработчик клика для выбора элемента
+    textElement.addEventListener('click', (e) => {
+      e.stopPropagation();
+      selectElement(textElement);
+    });
+
+    // Обработчик двойного клика для удаления элемента
+    textElement.addEventListener('dblclick', (e) => {
+      e.stopPropagation();
+      removeTextElement(textElement);
+    });
+  }
+
+  // Функция для удаления текста
+  function removeTextElement(element) {
+    element.remove();
+    // Удаляем стоимость текста
+    const index = addedFeatures.indexOf('customText');
+    if (index !== -1) {
+      addedFeatures.splice(index, 1);
+      updateTotalCost();
+    }
+    // Скрываем ползунок, если удаленный элемент был выбранным
+    if (selectedElement === element) {
+      sizeSliderContainer.style.display = 'none';
+      selectedElement = null;
+    }
+  }
+
+  // ---------------------------
   // Функция для перетаскивания и изменения размера элементов
   // ---------------------------
 
@@ -579,8 +856,14 @@ document.addEventListener('DOMContentLoaded', () => {
       if (width > 20) { // Минимальный размер
         const oldWidth = rect.width;
         // Обновляем размер элемента
-        elmnt.style.width = width + 'px';
-        elmnt.style.height = 'auto'; // Сохраняем пропорции
+        if (elmnt.tagName.toLowerCase() === 'div') {
+          const scale = width / rect.width;
+          const fontSize = parseFloat(window.getComputedStyle(elmnt).fontSize);
+          elmnt.style.fontSize = (fontSize * scale) + 'px';
+        } else {
+          elmnt.style.width = width + 'px';
+          elmnt.style.height = 'auto'; // Сохраняем пропорции
+        }
 
         // Вычисляем новые размеры после изменения
         const newRect = elmnt.getBoundingClientRect();
@@ -695,9 +978,21 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function clearLogo() {
-    // Очистите логотип, если используете его
+    // Очистите логотип и текст, если используете их
     const logoElements = mainView.querySelectorAll('img[data-logo-src]');
     logoElements.forEach(el => el.remove());
+
+    const textElements = mainView.querySelectorAll('.draggable-text');
+    textElements.forEach(el => el.remove());
+
+    // Удаляем стоимость логотипа и текста
+    ['customLogo', 'customText'].forEach(feature => {
+      const index = addedFeatures.indexOf(feature);
+      if (index !== -1) {
+        addedFeatures.splice(index, 1);
+      }
+    });
+    updateTotalCost();
   }
 
 });
