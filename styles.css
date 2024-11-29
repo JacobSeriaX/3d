@@ -267,6 +267,15 @@ body {
   background-color: #5a32a3;
 }
 
+/* Новая кнопка "Заливка" */
+.additional-buttons button#fillButton {
+  background-color: #17a2b8;
+}
+
+.additional-buttons button#fillButton:hover {
+  background-color: #138496;
+}
+
 /* Основная область для 3D модели */
 .main-view {
   flex-grow: 1;
@@ -421,6 +430,14 @@ model-viewer {
   color: #333;
 }
 
+.detail-image {
+  width: 100%;
+  height: auto;
+  max-height: 150px;
+  object-fit: contain;
+  border-radius: 5px;
+}
+
 /* Стили для модального окна добавления текста */
 #modalText textarea {
   width: 100%;
@@ -565,4 +582,33 @@ body.dark-theme #costBreakdown {
   .model-item model-viewer {
     height: 100px;
   }
+}
+
+/* Стили для палитры цветов в модальном окне "Заливка" */
+.fill-color-palette {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.fill-color-swatch {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.fill-color-swatch:hover {
+  border-color: #999;
+}
+
+/* Стили для карманов в режиме "Заливка" */
+.pocket.fillable {
+  outline: 2px dashed #007BFF;
+}
+
+.pocket {
+  /* Добавьте любые стили для карманов, если необходимо */
 }

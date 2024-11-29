@@ -45,13 +45,12 @@ document.addEventListener('DOMContentLoaded', () => {
     'PREZIDENT.glb': 175000,
     'PREZIDENT KAPUSHON.glb': 180000,
     'tunic.glb': 155000,
-    // Добавьте остальные модели с их ценами
   };
 
   // Отображаемые названия моделей
   const modelDisplayNames = {
-    'бушлат.glb': 'Бушлат',
-    'фартук.glb': 'Фартук',
+    'бушлат.glb': 'Bushlat',
+    'фартук.glb': 'Fartuk',
     'футболка с воротом.glb': 'Футболка с воротом',
     'жилетка.glb': 'Жилетка VERTU',
     'комбинезон.glb': 'Комбинезон',
@@ -78,14 +77,11 @@ document.addEventListener('DOMContentLoaded', () => {
     'PREZIDENT.glb': 'PREZIDENT',
     'PREZIDENT KAPUSHON.glb': 'PREZIDENT с капюшоном',
     'tunic.glb': 'Туника',
-    // Добавьте остальные модели с их названиями
   };
 
   // Стоимость дополнительных элементов (в сумах)
   const featurePrices = {
     'assets/pocket1.glb': 10000, // 10 тысяч
-    'assets/pocket2.glb': 15000, // 15 тысяч
-    'assets/pocket3.glb': 20000, // 20 тысяч
     // Добавьте остальные элементы с их ценами
     'customLogo': 5000, // Стоимость добавления логотипа
     'customText': 3000, // Стоимость добавления текста
@@ -94,26 +90,24 @@ document.addEventListener('DOMContentLoaded', () => {
   // Отображаемые названия дополнительных элементов
   const featureDisplayNames = {
     'assets/pocket1.glb': 'Карманы 1',
-    'assets/pocket2.glb': 'Карманы 2',
-    'assets/pocket3.glb': 'Карманы 3',
+    // Добавьте остальные элементы с их названиями
     'customLogo': 'Добавлен логотип',
     'customText': 'Добавлен текст',
-    // Добавьте остальные элементы с их названиями
   };
 
   // Стоимость дополнительных деталей (в сумах)
   const detailPrices = {
-    'details/collar.png': 5000,
-    'details/pocket.png': 3000,
-    'details/cuff.png': 2000,
+    'pocket/OIP.png': 5000,
+    'details/pocket2.png': 6000,
+    'details/button1.png': 2000,
     // Добавьте остальные детали и их цены
   };
 
   // Отображаемые названия дополнительных деталей
   const detailDisplayNames = {
-    'details/collar.png': 'Воротник',
-    'details/pocket.png': 'Карманы',
-    'details/cuff.png': 'Манжеты',
+    'pocket/OIP.png': 'Карман 1',
+    'details/pocket2.png': 'Карман 2',
+    'details/button1.png': 'Пуговица 1',
     // Добавьте остальные детали и их названия
   };
 
@@ -197,7 +191,7 @@ document.addEventListener('DOMContentLoaded', () => {
       modal.style.display = 'none';
     }
     // Закрытие дополнительных модальных окон
-    const additionalModals = ['modalPockets', 'modalLogo', 'modalOtherDetails', 'modalText'];
+    const additionalModals = ['modalPockets', 'modalLogo', 'modalOtherDetails', 'modalText', 'modalFill'];
     additionalModals.forEach(modalId => {
       const additionalModal = document.getElementById(modalId);
       if (additionalModal && event.target == additionalModal) {
@@ -244,20 +238,19 @@ document.addEventListener('DOMContentLoaded', () => {
   // Функция для получения имени модели из src
   function getModelName(src) {
     if (src.includes('бушлат')) return 'Bushlat';
-    if (src.includes('фартук')) return 'Apron';
-    if (src.includes('футболка с воротом')) return 'Tshirt';
-    if (src.includes('жилетка') && !src.includes('KAPUSHON')) return 'Waistcoat';
-    if (src.includes('жилетка') && src.includes('KAPUSHON')) return 'ELITEKAPUSHON';
-    if (src.includes('комбинезон')) return 'Coverall';
-    if (src.includes('куртка') && !src.includes('капюшон')) return 'Kurtka';
-    if (src.includes('поварской китель') && !src.includes('coat')) return 'ChefCoat';
-    if (src.includes('футболка без воротника')) return 'TshirtNoCollar';
-    if (src.includes('халат')) return 'Robe';
-    if (src.includes('шапка повара')) return 'ChefHat';
+    if (src.includes('фартук')) return 'Fartuk';
+    if (src.includes('футболка с воротом')) return 'FutbolkaSVorotom';
+    if (src.includes('жилетка.glb')) return 'Jiletka';
+    if (src.includes('комбинезон')) return 'Kombinezon';
+    if (src.includes('куртка.glb')) return 'Kurtka';
+    if (src.includes('поварской китель')) return 'PovarskoyKitel';
+    if (src.includes('футболка без воротника')) return 'FutbolkaBezVorotnika';
+    if (src.includes('халат')) return 'Halat';
+    if (src.includes('шапка повара')) return 'ShapkaPovara';
     if (src.includes('ELITE KAPUSHON')) return 'ELITEKAPUSHON';
     if (src.includes('ELITE')) return 'ELITE';
     if (src.includes('AGROMIR')) return 'AGROMIR';
-    if (src.includes('coat.glb')) return 'CoatS';
+    if (src.includes('coat.glb')) return 'Coat';
     if (src.includes('coat1')) return 'Coat1';
     if (src.includes('coat2')) return 'Coat2';
     if (src.includes('coat3')) return 'Coat3';
@@ -271,7 +264,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (src.includes('MANDARIN')) return 'MANDARIN';
     if (src.includes('PREZIDENT KAPUSHON')) return 'PREZIDENTKAPUSHON';
     if (src.includes('PREZIDENT')) return 'PREZIDENT';
-    if (src.includes('tunic')) return 'tunic';
+    if (src.includes('tunic')) return 'Tunic';
     // Добавьте условия для остальных новых моделей при необходимости
     return '';
   }
@@ -436,6 +429,11 @@ document.addEventListener('DOMContentLoaded', () => {
     newFeature.style.width = '100px';
     newFeature.dataset.modelSrc = modelSrc;
 
+    // Добавляем класс "pocket", если это карман
+    if (modelSrc.includes('pocket')) {
+      newFeature.classList.add('pocket');
+    }
+
     // Устанавливаем элемент в центр mainView
     newFeature.style.left = (mainView.offsetWidth / 2 - 50) + 'px'; // 50 - половина ширины
     newFeature.style.top = (mainView.offsetHeight / 2 - 50) + 'px';
@@ -563,6 +561,11 @@ document.addEventListener('DOMContentLoaded', () => {
     detailElement.style.cursor = 'pointer';
     detailElement.style.width = '100px';
     detailElement.dataset.detailSrc = detailSrc;
+
+    // Добавляем класс "pocket", если это карман
+    if (detailSrc.includes('pocket')) {
+      detailElement.classList.add('pocket');
+    }
 
     // Устанавливаем элемент в центр mainView
     detailElement.style.left = (mainView.offsetWidth / 2 - 50) + 'px';
@@ -849,12 +852,8 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!isResizing) return;
       const rect = elmnt.getBoundingClientRect();
       const parentRect = mainView.getBoundingClientRect();
-      const centerX = rect.left + rect.width / 2 - parentRect.left;
-      const centerY = rect.top + rect.height / 2 - parentRect.top;
-
       const width = e.clientX - rect.left;
       if (width > 20) { // Минимальный размер
-        const oldWidth = rect.width;
         // Обновляем размер элемента
         if (elmnt.tagName.toLowerCase() === 'div') {
           const scale = width / rect.width;
@@ -995,4 +994,128 @@ document.addEventListener('DOMContentLoaded', () => {
     updateTotalCost();
   }
 
+  // ---------------------------
+  // Функциональность "Заливка"
+  // ---------------------------
+
+  const fillButton = document.getElementById('fillButton');
+  const modalFill = document.getElementById('modalFill');
+  const closeFillModal = document.querySelector('.close[data-modal="modalFill"]');
+  const fillColorPalette = document.querySelector('.fill-color-palette');
+
+  let fillMode = false;
+  let selectedFillColor = '';
+
+  fillButton.addEventListener('click', () => {
+    modalFill.style.display = 'block';
+    generateFillColorPalette();
+  });
+
+  closeFillModal.addEventListener('click', () => {
+    modalFill.style.display = 'none';
+    fillMode = false;
+    selectedFillColor = '';
+  });
+
+  // Генерация палитры цветов для заливки
+  function generateFillColorPalette() {
+    fillColorPalette.innerHTML = '';
+    colorPalette.forEach(color => {
+      const swatch = document.createElement('div');
+      swatch.classList.add('fill-color-swatch');
+      swatch.style.backgroundColor = color;
+      swatch.addEventListener('click', () => {
+        selectedFillColor = color;
+        fillMode = true;
+        modalFill.style.display = 'none';
+        enableFillMode();
+      });
+      fillColorPalette.appendChild(swatch);
+    });
+  }
+
+  // Включение режима заливки
+  function enableFillMode() {
+    // Подсвечиваем карманы
+    const pockets = mainView.querySelectorAll('.pocket');
+    pockets.forEach(pocket => {
+      pocket.classList.add('fillable');
+      pocket.style.pointerEvents = 'auto';
+      pocket.addEventListener('click', fillPocket);
+    });
+
+    // При клике вне карманов отключаем режим заливки
+    mainView.addEventListener('click', exitFillMode);
+  }
+
+  // Отключение режима заливки
+  function exitFillMode(e) {
+    if (e.target.classList.contains('pocket')) return;
+    fillMode = false;
+    selectedFillColor = '';
+    const pockets = mainView.querySelectorAll('.pocket');
+    pockets.forEach(pocket => {
+      pocket.classList.remove('fillable');
+      pocket.removeEventListener('click', fillPocket);
+    });
+    mainView.removeEventListener('click', exitFillMode);
+  }
+
+  // Функция для заливки кармана
+  function fillPocket(e) {
+    e.stopPropagation();
+    if (!fillMode) return;
+    const pocket = e.currentTarget;
+    // Применяем цвет к карману
+    pocket.style.filter = `brightness(0) saturate(100%) sepia(1) hue-rotate(${getHueRotation(
+      selectedFillColor
+    )}deg)`;
+  }
+
+  // Функция для получения значения hue-rotate для CSS фильтра
+  function getHueRotation(color) {
+    const rgb = hexToRgb(color);
+    const hsl = rgbToHsl(rgb.r, rgb.g, rgb.b);
+    return Math.round(hsl.h);
+  }
+
+  // Функция для преобразования HEX в RGB
+  function hexToRgb(hex) {
+    const bigint = parseInt(hex.slice(1), 16);
+    const r = (bigint >> 16) & 255;
+    const g = (bigint >> 8) & 255;
+    const b = bigint & 255;
+    return { r, g, b };
+  }
+
+  // Функция для преобразования RGB в HSL
+  function rgbToHsl(r, g, b) {
+    (r /= 255), (g /= 255), (b /= 255);
+
+    const max = Math.max(r, g, b),
+      min = Math.min(r, g, b);
+    let h,
+      s,
+      l = (max + min) / 2;
+
+    if (max == min) {
+      h = s = 0; // achromatic
+    } else {
+      const d = max - min;
+      s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+      switch (max) {
+        case r:
+          h = ((g - b) / d + (g < b ? 6 : 0)) * 60;
+          break;
+        case g:
+          h = ((b - r) / d + 2) * 60;
+          break;
+        case b:
+          h = ((r - g) / d + 4) * 60;
+          break;
+      }
+    }
+
+    return { h, s, l };
+  }
 });

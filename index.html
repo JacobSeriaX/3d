@@ -2,18 +2,18 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>3D Конфигуратор Спецодежды</title>
   <link rel="stylesheet" href="styles.css">
-  <!-- Подключение model-viewer -->
-  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
+  <!-- Подключение библиотеки model-viewer -->
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <style>
+    /* Добавьте стили здесь, если необходимо */
+  </style>
 </head>
 <body>
-  <!-- Сайдбар с опциями настройки -->
   <div class="sidebar">
-    <h2>Настройка Спецодежды</h2>
-    
-       <!-- Опции для Бушлата -->
+    <h2>Настройка</h2>
+        <!-- Опции для Бушлата -->
 <div class="options-group" id="optionsBushlat">
   <h3>Бушлат</h3>
   <div class="option">
@@ -96,7 +96,7 @@
 </div>
 
 <!-- Опции для Футболки -->
-<div class="options-group" id="optionsTshirt" style="display: none;">
+<div class="options-group" id="optionsFutbolkaSVorotom" style="display: none;">
   <h3>Футболка</h3>
   <div class="option">
     <div class="option-square">
@@ -1288,6 +1288,8 @@
       <button id="toggleRotationButton" class="feature-button">Вращение: Включено</button>
       <!-- Кнопка "Добавить другие детали" -->
       <button id="addOtherDetailsButton" class="feature-button">Добавить другие детали</button>
+      <!-- Новая кнопка "Заливка" -->
+      <button id="fillButton" class="feature-button">Заливка</button>
     </div>
   </div>
 
@@ -1310,6 +1312,7 @@
     </div>
   </div>
 
+  <!-- Модальные окна -->
   <!-- Модальные окна -->
   <!-- Модальное окно выбора модели -->
   <div id="modal" class="modal">
@@ -1462,7 +1465,40 @@
     </div>
   </div>
 
-  <!-- Модальные окна для карманов и других деталей остаются без изменений -->
+  <!-- Модальное окно для добавления других деталей -->
+  <div id="modalOtherDetails" class="modal">
+    <div class="modal-content">
+      <span class="close" data-modal="modalOtherDetails">&times;</span>
+      <h2>Добавить другие детали</h2>
+      <div class="details-grid">
+        <!-- Добавьте детали (например, карманы, пуговицы) в формате PNG -->
+        <div class="detail-item" data-detail-src="pocket/OIP.png">
+          <img src="pocket/OIP.png" alt="Карман 1" class="detail-image">
+          <p>Карман 1</p>
+        </div>
+        <div class="detail-item" data-detail-src="details/pocket2.png">
+          <img src="details/pocket2.png" alt="Карман 2" class="detail-image">
+          <p>Карман 2</p>
+        </div>
+        <div class="detail-item" data-detail-src="details/button1.png">
+          <img src="details/button1.png" alt="Пуговица 1" class="detail-image">
+          <p>Пуговица 1</p>
+        </div>
+        <!-- Добавьте остальные детали по аналогии -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Модальное окно для выбора цвета заливки -->
+  <div id="modalFill" class="modal">
+    <div class="modal-content">
+      <span class="close" data-modal="modalFill">&times;</span>
+      <h2>Выберите цвет заливки</h2>
+      <div class="fill-color-palette">
+        <!-- Цветовые квадраты будут динамически добавлены из JavaScript -->
+      </div>
+    </div>
+  </div>
 
   <!-- Подключение скриптов -->
   <script src="script.js"></script>
